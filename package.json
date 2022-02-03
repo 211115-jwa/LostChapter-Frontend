@@ -30,9 +30,11 @@
     "bulma": "^0.9.3",
     "jquery": "^3.6.0",
     "material-icons": "^1.10.4",
+    "moment": "^2.29.1",
     "ngx-pagination": "^5.1.1",
     "ngx-slickjs": "^1.5.2",
     "rxjs": "~7.4.0",
+    "serve": "^13.0.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },

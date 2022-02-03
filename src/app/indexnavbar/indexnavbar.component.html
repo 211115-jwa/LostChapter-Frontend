@@ -10,7 +10,7 @@
         <div id="nav-search">
           <form id="nav-search-bar-form">
             <div class="nav-fill">
-              <input type="text" placeholder="Search for books..." [(ngModel)]="searchItem" name="searchItem">
+              <input type="text" placeholder="{{d|age}}" [(ngModel)]="searchItem" name="searchItem">
             </div>
             <div class="nav-right">
               <!-- <a routerLink="/search-results" routerLinkActive="/search-results"></a> -->
@@ -24,6 +24,7 @@
           <ng-container *ngIf="ableToSignUp">
             <a routerLink="/signup">Sign up</a>
           </ng-container>
+          <a routerLink="/wishlist">Wishlist</a>
           <ng-container *ngIf="ableToLogIn">
             <a routerLink="/login">Log in</a>
           </ng-container>

@@ -19,7 +19,7 @@ export class IndexnavbarComponent implements OnInit {
   notLoggedIn:boolean= true;
   ableToSignUp:boolean= true;
   ableToLogIn:boolean= true;
-
+  d:Date = new Date("1993-03-01");
   role!:String;
   currentUser!: String;
 
@@ -88,6 +88,7 @@ export class IndexnavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkIfLoggedIn();
+
     // get current signed in user, so it will be used to toggle loggedInTrue and show the user's username
   }
 
