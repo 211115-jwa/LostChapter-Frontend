@@ -21,7 +21,7 @@ export class SignupComponent implements OnInit {
   email!: string;
   birthday!: string;
   address!: string;
-  role!: string;
+ 
 
   // show / hide password
   hide = true;
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSignupClick() {
-    this.signupService.signup(this.username, this.password, this.firstName, this.lastName, this.age, this.email, this.birthday, this.address, this.role).subscribe((res) => {
+    this.signupService.signup(this.username, this.password, this.firstName, this.lastName, this.age, this.email, this.birthday, this.address).subscribe((res) => {
       if (res.status === 201 || res.status === 200){
         if (res.body){
           this.successMessage = '';
