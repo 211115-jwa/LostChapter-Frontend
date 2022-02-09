@@ -2,11 +2,11 @@ import { Component,  EventEmitter, Inject, Input, OnInit, Output } from '@angula
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SearchProducts } from 'SearchProduct';
-import { LoginService } from '../login.service';
-import { User } from 'User';
-import { SearchProductsService } from '../search-products.service';
-import { AdminService } from '../admin.service';
+import { SearchProducts } from 'src/app/models/SearchProduct';
+import { User } from 'src/app/models/User';
+import { AdminService } from '../services/admin.service';
+import { LoginService } from '../services/login.service';
+import { SearchProductsService } from '../services/search-products.service';
 
 @Component({
   selector: 'app-admin-feature',

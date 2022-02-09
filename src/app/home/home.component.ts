@@ -2,9 +2,9 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
-import { SearchProducts } from 'SearchProduct';
+import { SearchProducts } from 'src/app/models/SearchProduct';
 import { DisplayProductModalComponent } from '../display-product-modal/display-product-modal.component';
-import { Genre } from '../genre';
+import { Genre } from '../models/genre';
 import { LoginService } from '../login.service';
 import { SearchProductsService } from '../search-products.service';
 
