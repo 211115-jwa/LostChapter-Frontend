@@ -4,6 +4,7 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { SearchProducts } from 'SearchProduct';
 import { DisplayProductModalComponent } from '../display-product-modal/display-product-modal.component';
+import { Genre } from '../genre';
 import { LoginService } from '../login.service';
 import { SearchProductsService } from '../search-products.service';
 
@@ -18,28 +19,37 @@ export class HomeComponent implements OnInit {
     private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getGenreById(1)
+    this.getAllGenre();
+    this.getByGenre("unknown");
   }
 
   displayProducts: SearchProducts[] = [];
-  selectedIndex: number = 1;
+  selectedIndex: string = "unknown";
   selectedProducts!: SearchProducts;
+  genre: Genre[]=[];
 
 
 
   // bookId!: number;
   dialogResult!: string;
 
-  getSelectedIndex(): number {
-    return this.getGenreService.currentTabIndex
+
+  getSelectedIndex(): string {
+    return this.selectedIndex;
   }
 
   onTabChange(event: MatTabChangeEvent){
-    this.selectedIndex = event.index + 1;
+    this.getByGenre(this.selectedIndex);
   }
 
-  getGenreById(genreId: number) {
-    this.getGenreService.getSearchByGenre(genreId).subscribe((res) => {
+  getAllGenre() {
+    this.getGenreService.getAllGenre().subscribe((res) => {
+      let body = <Genre[]> res.body;
+      this.genre = body
+    })
+  }
+  getByGenre(genre: string) {
+    this.getGenreService.getSearchByGenre(genre).subscribe((res) => {
       let body = <SearchProducts[]> res.body;
       this.displayProducts = body
     })

@@ -8,24 +8,37 @@ export class SearchProductsService {
 
   constructor(private http: HttpClient) { }
 
-  public currentTabIndex = 1;
+  getAllGenre(){
+    return this.http.get(`http://localhost:8081/book/genre`, {
+      //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/search/${searchItem}`, {
+      observe: 'response'
+    })
 
-  getSearchResult(searchItem: string){
-    return this.http.get(`http://localhost:8081/books/search/${searchItem}`, {
+  }
+
+  getAllBooks(){
+    return this.http.get(`http://localhost:8081/book`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/search/${searchItem}`, {
       observe: 'response'
     })
   }
 
-  getSearchByGenre(genreId: number){
-    return this.http.get(`http://localhost:8081/books/genre/${genreId}`, {
+  getSearchResult(searchItem: string){
+    return this.http.get(`http://localhost:8081/book/search/${searchItem}`, {
+      //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/search/${searchItem}`, {
+      observe: 'response'
+    })
+  }
+
+  getSearchByGenre(genre: string){
+    return this.http.get(`http://localhost:8081/book/genre/${genre}`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/genre/${genreId}`, {
       observe: 'response'
     })
   }
 
   getBookBySales(){
-    return this.http.get(`http://localhost:8081/books/sales`, {
+    return this.http.get(`http://localhost:8081/book/sales`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/sales`, {
       observe: 'response'
     })
@@ -45,14 +58,14 @@ export class SearchProductsService {
   }
 
   getBookById(bookId: number){
-    return this.http.get(`http://localhost:8081/books/${bookId}`, {
+    return this.http.get(`http://localhost:8081/book/${bookId}`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/${bookId}`, {
       observe: 'response'
     })
   }
 
   getFeaturedBooks(){
-    return this.http.get(`http://localhost:8081/books/featured`, {
+    return this.http.get(`http://localhost:8081/book/featured`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/featured`, {
       observe: 'response'
     })
