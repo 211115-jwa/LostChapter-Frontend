@@ -4,7 +4,8 @@ import {faLightbulb as faSolidLightbulb, faDollarSign, IconDefinition
 import { faLightbulb as faRegularLightbulb } from "@fortawesome/free-regular-svg-icons";
 import { ThemeService } from "src/app/services/theme.service";
 import { User } from 'src/app/models/User';
-import { LoginService } from '../login.service';
+import { LoginService } from '../services/login.service';
+
 
 @Component({
   selector: 'app-footer',

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Cart } from '../models/Cart';
 import { NavigationEnd, Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
-import { LoginService } from '../login.service';
 import { User } from 'src/app/models/User';
 import { lastValueFrom } from 'rxjs';
 import { BooksToBuy } from 'src/app/models/BooksToBuy';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-cart',

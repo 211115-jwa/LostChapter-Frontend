@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SearchProducts } from 'src/app/models/SearchProduct';
 import { User } from 'src/app/models/User';
 import { AdminService } from '../services/admin.service';
-import { LoginService } from '../login.service';
-import { SearchProductsService } from '../search-products.service';
+import { LoginService } from '../services/login.service';
+import { SearchProductsService } from '../services/search-products.service';
 
 @Component({
   selector: 'app-update-book',

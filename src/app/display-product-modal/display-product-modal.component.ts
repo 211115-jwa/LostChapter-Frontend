@@ -5,8 +5,9 @@ import { SearchProducts } from 'src/app/models/SearchProduct';
 import { CartService } from 'src/app/services/cart.service';
 import { User } from 'src/app/models/User';
 import { Cart } from 'src/app/models/Cart';
-import { LoginService } from '../login.service';
-import { SearchProductsService } from '../search-products.service';
+import { LoginService } from '../services/login.service';
+import { SearchProductsService } from '../services/search-products.service';
+
 
 @Component({
   selector: 'app-display-product-modal',
