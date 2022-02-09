@@ -1,10 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { SearchProducts } from 'SearchProduct';
-import { CartService } from 'src/service/cart.service';
-import { User } from 'User';
-import { Cart } from 'Cart';
+import { SearchProducts } from 'src/app/models/SearchProduct';
+import { CartService } from 'src/app/services/cart.service';
+import { User } from 'src/app/models/User';
+import { Cart } from 'src/app/models/Cart';
 import { LoginService } from '../login.service';
 import { SearchProductsService } from '../search-products.service';
 

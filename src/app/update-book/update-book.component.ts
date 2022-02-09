@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SearchProducts } from 'SearchProduct';
-import { User } from 'User';
-import { AdminService } from '../admin.service';
+import { SearchProducts } from 'src/app/models/SearchProduct';
+import { User } from 'src/app/models/User';
+import { AdminService } from '../services/admin.service';
 import { LoginService } from '../login.service';
 import { SearchProductsService } from '../search-products.service';
 

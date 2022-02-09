@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from '../../../Cart';
+import { Cart } from '../models/Cart';
 import { NavigationEnd, Router } from '@angular/router';
-import { CartService } from 'src/service/cart.service';
+import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from '../login.service';
-import { User } from 'User';
+import { User } from 'src/app/models/User';
 import { lastValueFrom } from 'rxjs';
-import { BooksToBuy } from 'BooksToBuy';
+import { BooksToBuy } from 'src/app/models/BooksToBuy';
 
 @Component({
   selector: 'app-cart',
