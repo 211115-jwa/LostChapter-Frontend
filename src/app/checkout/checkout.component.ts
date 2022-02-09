@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Checkout } from 'Checkout';
-import { ShippingAddress } from 'ShippingAddress';
-import { CheckoutService } from '../checkout.service';
-import { LoginService } from '../login.service';
+import { Checkout } from '../models/Checkout';
+import { ShippingAddress } from '../models/ShippingAddress';
+import { CheckoutService } from '../services/checkout.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-checkout',

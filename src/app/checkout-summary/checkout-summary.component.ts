@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Checkout } from 'Checkout';
-import { CheckoutService } from '../checkout.service';
+import { Checkout } from '../models/Checkout';
+import { CheckoutService } from '../services/checkout.service';
+
 @Component({
   selector: 'app-checkout-summary',
   templateUrl: './checkout-summary.component.html',

@@ -5,8 +5,9 @@ import { Router } from '@angular/router';
 import { SearchProducts } from 'src/app/models/SearchProduct';
 import { DisplayProductModalComponent } from '../display-product-modal/display-product-modal.component';
 import { Genre } from '../models/genre';
-import { LoginService } from '../login.service';
-import { SearchProductsService } from '../search-products.service';
+import { LoginService } from '../services/login.service';
+import { SearchProductsService } from '../services/search-products.service';
+
 
 @Component({
   selector: 'app-home',
