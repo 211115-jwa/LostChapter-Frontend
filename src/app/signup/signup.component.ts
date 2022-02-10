@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'User';
-import { LoginService } from '../login.service';
-import { SignupService } from '../signup.service';
+import { User } from 'src/app/models/User';
+import { LoginService } from '../services/login.service';
+import { SignupService } from '../services/signup.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +22,7 @@ export class SignupComponent implements OnInit {
   email!: string;
   birthday!: string;
   address!: string;
-  role!: string;
+ 
 
   // show / hide password
   hide = true;
@@ -53,7 +54,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSignupClick() {
-    this.signupService.signup(this.username, this.password, this.firstName, this.lastName, this.age, this.email, this.birthday, this.address, this.role).subscribe((res) => {
+    this.signupService.signup(this.username, this.password, this.firstName, this.lastName, this.age, this.email, this.birthday, this.address).subscribe((res) => {
       if (res.status === 201 || res.status === 200){
         if (res.body){
           this.successMessage = '';

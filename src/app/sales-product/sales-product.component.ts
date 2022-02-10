@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { SearchProducts } from 'SearchProduct';
+import { SearchProducts } from 'src/app/models/SearchProduct';
 import { DisplayProductModalComponent } from '../display-product-modal/display-product-modal.component';
-import { SearchProductsService } from '../search-products.service';
+import { SearchProductsService } from '../services/search-products.service';
+
 
 @Component({
   selector: 'app-sales-product',

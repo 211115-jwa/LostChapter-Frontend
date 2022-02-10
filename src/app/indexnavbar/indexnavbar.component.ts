@@ -1,12 +1,12 @@
-import { User } from 'User';
-import { LoginService } from '../login.service';
+import { User } from 'src/app/models/User';
 import { LoginComponent } from '../login/login.component';
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { SearchProducts } from 'SearchProduct';
-import { SearchProductsService } from '../search-products.service';
+import { SearchProducts } from 'src/app/models/SearchProduct';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
+import { SearchProductsService } from '../services/search-products.service';
 
 @Component({
   selector: 'app-indexnavbar',

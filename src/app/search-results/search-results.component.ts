@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SearchProducts } from 'SearchProduct';
-import { User } from 'User';
-import { Cart } from '../../../Cart';
+import { SearchProducts } from 'src/app/models/SearchProduct';
+import { User } from 'src/app/models/User';
+import { Cart } from '../models/Cart';
 import { DisplayProductModalComponent } from '../display-product-modal/display-product-modal.component';
-import { LoginService } from '../login.service';
-import { SearchProductsService } from '../search-products.service';
+import { LoginService } from '../services/login.service';
+import { SearchProductsService } from '../services/search-products.service';
+
 
 @Component({
   selector: 'app-search-results',

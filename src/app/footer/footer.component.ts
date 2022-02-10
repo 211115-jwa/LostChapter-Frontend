@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {faLightbulb as faSolidLightbulb, faDollarSign, IconDefinition
 } from "@fortawesome/free-solid-svg-icons";
 import { faLightbulb as faRegularLightbulb } from "@fortawesome/free-regular-svg-icons";
-import { ThemeService } from "src/app/theme.service";
-import { User } from 'User';
-import { LoginService } from '../login.service';
+import { ThemeService } from "src/app/services/theme.service";
+import { User } from 'src/app/models/User';
+import { LoginService } from '../services/login.service';
+
 
 @Component({
   selector: 'app-footer',

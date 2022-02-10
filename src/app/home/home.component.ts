@@ -2,10 +2,12 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Router } from '@angular/router';
-import { SearchProducts } from 'SearchProduct';
+import { SearchProducts } from 'src/app/models/SearchProduct';
 import { DisplayProductModalComponent } from '../display-product-modal/display-product-modal.component';
-import { LoginService } from '../login.service';
-import { SearchProductsService } from '../search-products.service';
+import { Genre } from '../models/genre';
+import { LoginService } from '../services/login.service';
+import { SearchProductsService } from '../services/search-products.service';
+
 
 @Component({
   selector: 'app-home',
@@ -18,28 +20,35 @@ export class HomeComponent implements OnInit {
     private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getGenreById(1)
+    this.getByGenre(this.selectedIndex,0);
+    console.log("on in: " + this.selectedIndex);
   }
 
   displayProducts: SearchProducts[] = [];
-  selectedIndex: number = 1;
+  selectedIndex: string = "fiction";
+ 
   selectedProducts!: SearchProducts;
+  genre: string[]=["fiction","nonfiction","science fiction", "fantasy","biography"];
 
 
 
   // bookId!: number;
   dialogResult!: string;
 
-  getSelectedIndex(): number {
-    return this.getGenreService.currentTabIndex
+
+  getSelectedIndex(): string {
+    return this.selectedIndex;
   }
 
   onTabChange(event: MatTabChangeEvent){
-    this.selectedIndex = event.index + 1;
+    console.log("event:"+event.index)
+    this.getByGenre(this.genre[event.index],event.index);
   }
 
-  getGenreById(genreId: number) {
-    this.getGenreService.getSearchByGenre(genreId).subscribe((res) => {
+
+  getByGenre(genre: string, index:number) {
+    this.selectedIndex=this.genre[index];
+    this.getGenreService.getSearchByGenre(genre).subscribe((res) => {
       let body = <SearchProducts[]> res.body;
       this.displayProducts = body
     })
