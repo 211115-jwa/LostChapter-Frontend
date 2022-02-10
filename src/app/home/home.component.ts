@@ -20,14 +20,15 @@ export class HomeComponent implements OnInit {
     private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getAllGenre();
-    this.getByGenre("unknown");
+    this.getByGenre(this.selectedIndex,0);
+    console.log("on in: " + this.selectedIndex);
   }
 
   displayProducts: SearchProducts[] = [];
-  selectedIndex: string = "unknown";
+  selectedIndex: string = "fiction";
+ 
   selectedProducts!: SearchProducts;
-  genre: Genre[]=[];
+  genre: string[]=["fiction","nonfiction","science fiction", "fantasy","biography"];
 
 
 
@@ -40,16 +41,13 @@ export class HomeComponent implements OnInit {
   }
 
   onTabChange(event: MatTabChangeEvent){
-    this.getByGenre(this.selectedIndex);
+    console.log("event:"+event.index)
+    this.getByGenre(this.genre[event.index],event.index);
   }
 
-  getAllGenre() {
-    this.getGenreService.getAllGenre().subscribe((res) => {
-      let body = <Genre[]> res.body;
-      this.genre = body
-    })
-  }
-  getByGenre(genre: string) {
+
+  getByGenre(genre: string, index:number) {
+    this.selectedIndex=this.genre[index];
     this.getGenreService.getSearchByGenre(genre).subscribe((res) => {
       let body = <SearchProducts[]> res.body;
       this.displayProducts = body
