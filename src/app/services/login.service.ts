@@ -23,7 +23,7 @@ export class LoginService {
     }, {
       withCredentials: true,
       observe: 'response'
-    })
+    });
   }
 
   logout() {
