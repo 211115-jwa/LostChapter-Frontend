@@ -47,6 +47,7 @@ import { AgePipe } from './age.pipe';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ReviewComponent } from './review/review.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

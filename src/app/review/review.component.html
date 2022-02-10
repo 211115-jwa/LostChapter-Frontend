@@ -1,4 +1,46 @@
-<div>
+<div>Component works!</div>
 
-    
-</div>
+
+
+<div class="reviewcard">
+    <button mat-button mat-dialog-close>x</button>
+    <h2 ></h2>
+  
+    <div class="mat-typography">
+      <mat-card class="review-card">
+        <mat-card-header>
+          <h1></h1><br>
+          <mat-card-title></mat-card-title>
+  
+          <mat-card-subtitle>Review Title<br>
+            <input id="revtitle" name="fieldName" ngDefaultControl matInput type="text"
+              [(ngModel)]='review.reviewTitle'><br>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>Review Text
+          <p>
+            <textarea name="fieldName" ngDefaultControl matInput id="revtext" [(ngModel)]='review.reviewText'></textarea>
+            <br>
+  
+
+            
+          <!-- <form [formGroup]="form">
+            <ngx-star-rating id="revrate" name="fieldName" ngDefaultControl formControlName="ratingReview"
+              [(ngModel)]='review.ratingOne'></ngx-star-rating>
+            <div>Rating: {{review?.ratingOne}}</div>
+            
+          </form> -->
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button id="revsubbtn" type="button" (click)="sendRev()"  mat-dialog-close>Submit Review</button>
+        </mat-card-actions>
+      </mat-card>
+  
+    </div>
+  </div>
+  
+  <mat-label class="sample" type="text"> {{review.reviewTitle}}</mat-label><br>
+  <mat-label class="sample" type="text">{{review.reviewText}}</mat-label><br>
+  <!-- <mat-label class="sample" type="text">{{form.value.ratingOne}}</mat-label><br> -->
+  <mat-label class="sample" type="text">{{review.book}}</mat-label><br>
+  <mat-label class="sample" type="text">{{review.user}}</mat-label><br>

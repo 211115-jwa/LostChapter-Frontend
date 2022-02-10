@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BooksToBuy } from '../models/BooksToBuy';
+import { Products } from '../models/Products';
 import { Review } from '../models/review';
 import { User } from '../models/User';
 
@@ -8,6 +10,10 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class ReviewService {
+review!:Review;
+//book!:Products;
+  //book!:Products;
+  public bookId!: number;
 
   constructor(private http: HttpClient) { }
 
@@ -24,24 +30,11 @@ export class ReviewService {
       observe: 'response'
     })
   }
-
-  postNewReview(reviewId: string, book: BooksToBuy, user: User, reviewTitle: String, reviewContent: String) {
-    return this.http.post(`http://localhost:8081/reviews` ,
-      //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/reviews`, 
-      {
-      "reviewId": reviewId,
-      "book": book,
-      "user": user,
-      "reviewTitle": reviewTitle,
-      "reviewContent": reviewContent
-      }, 
-      {
-      withCredentials: true,
-      observe: 'response',
-      responseType: 'text'
-      }
-    );
+  sendReview(review:Review){
+    console.log(review);
+    this.http.post(`http://localhost:8081/reviews/`, review);
   }
+
 
   updateReviewById(reviewId: String, updatedReview: Review) {
     return this.http.put(`http://localhost:8081/reviews/${reviewId}`,

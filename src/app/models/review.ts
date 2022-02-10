@@ -1,11 +1,14 @@
+import { Products } from "./Products";
 import { User } from "./User";
 
-export interface Review {
-    review: {
-        reviewId: String,
-        book: String,
-        User: User,
-        reviewTitle: String,
-        reviewContent: String
-    }[];
-}
+
+export class Review {
+        reviewId!: number;
+        book!: number;
+        user!: number;
+        reviewTitle!: String;
+        reviewText!: String;
+        ratingOne!: number;
+        sentAt!: "";
+    }
+

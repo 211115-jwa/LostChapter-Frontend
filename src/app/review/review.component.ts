@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Review } from '../models/review';
+import { ReviewService } from '../services/review.service';
+
 
 @Component({
   selector: 'app-review',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewComponent implements OnInit {
 
-  constructor() { }
+  review:Review = {
+    reviewId: 0,
+    reviewTitle: "title for your review",
+    reviewText: "tell us about the movie your reviewing",
+    ratingOne: 0,
+    sentAt: "",
+    user:1,
+    book:0
+  }
+
+  constructor(private revServ:ReviewService) { }
 
   ngOnInit(): void {
   }
+
+
+sendRev() {
+  //this.userid = this.userServ.loggedInUser.id;
+ // this.review.user = this.userid;
+  this.review.book = this.revServ.bookId;
+ console.log(this.review);
+   this.revServ.sendReview(this.review);
+     
+    alert("Review Submitted!");
+
+}
+
 
 }
