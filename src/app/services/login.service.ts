@@ -12,6 +12,10 @@ export class LoginService {
   }
 
   loggedInUser: any| undefined | null;
+  regHeaders = { 'Content-type': 'application/json' };
+  jwtHeaders = { 'Content-type': 'application/json' };
+
+
 
   checkLoginStatus() {
     let token = localStorage.getItem('Token');
@@ -31,7 +35,7 @@ export class LoginService {
     let resp = await fetch(`http://localhost:8081/users/auth`, {
       method: 'POST',
       body: JSON.stringify(credentials),
-      headers: { 'Content-type': 'application/json' },
+      headers: this.regHeaders,
     });
     if (resp.status === 200) {
       let token = await resp.json();
