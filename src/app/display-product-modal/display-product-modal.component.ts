@@ -41,13 +41,13 @@ export class DisplayProductModalComponent implements OnInit {
     this.dialogRef.close('Confirm');
   }
 
-  viewBookReviews() {
-    this.reviewServ.getAllReviewsForBook(this.selectedProducts.bookId).subscribe((res) => {
-      let responseBody = <Review[]> res.body;
-      this.bookReviews = responseBody;
+  // viewBookReviews() {
+  //   this.reviewServ.getAllReviewsForBook(this.selectedProducts.bookId).subscribe((res) => {
+  //     let responseBody = <Review[]> res.body;
+  //     this.bookReviews = responseBody;
 
-    })
-  }
+  //   })
+  // }
 
   checkLoginStatus(){
     this.loginService.checkLoginStatus().subscribe({
