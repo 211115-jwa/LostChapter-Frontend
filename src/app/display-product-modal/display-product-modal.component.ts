@@ -7,6 +7,8 @@ import { User } from 'src/app/models/User';
 import { Cart } from 'src/app/models/Cart';
 import { LoginService } from '../services/login.service';
 import { SearchProductsService } from '../services/search-products.service';
+import { ReviewService } from '../services/review.service';
+import { Review } from '../models/review';
 
 
 @Component({
@@ -16,7 +18,7 @@ import { SearchProductsService } from '../services/search-products.service';
 })
 export class DisplayProductModalComponent implements OnInit {
 
-  constructor(private cartService: CartService, private router: Router, private loginService: LoginService, private addProductToCartService: SearchProductsService, public dialog: MatDialog, private getGenreService: SearchProductsService, public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA)public data: string) { }
+  constructor(private cartService: CartService, private router: Router, private loginService: LoginService, private addProductToCartService: SearchProductsService, public dialog: MatDialog, private getGenreService: SearchProductsService, private reviewServ: ReviewService, public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA)public data: string) { }
 
   selectedProducts!: SearchProducts;
   errorMessage!: string;
@@ -25,6 +27,7 @@ export class DisplayProductModalComponent implements OnInit {
   userId!: number;
   added?: boolean;
   addedToCart = "Item have been added to Cart";
+  bookReviews!: Review[];
 
   role!: String;
 
@@ -36,6 +39,14 @@ export class DisplayProductModalComponent implements OnInit {
 
   onCloseDisplayProduct() {
     this.dialogRef.close('Confirm');
+  }
+
+  viewBookReviews() {
+    this.reviewServ.getAllReviewsForBook(this.selectedProducts.bookId).subscribe((res) => {
+      let responseBody = <Review[]> res.body;
+      this.bookReviews = responseBody;
+
+    })
   }
 
   checkLoginStatus(){
@@ -73,5 +84,6 @@ export class DisplayProductModalComponent implements OnInit {
       }
     })
   }
+
 
 }

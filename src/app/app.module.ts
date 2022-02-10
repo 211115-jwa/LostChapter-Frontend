@@ -45,6 +45,7 @@ import { FeaturedProductsComponent } from './featured-products/featured-products
 import { NgxSlickJsModule } from 'ngx-slickjs';
 import { AgePipe } from './age.pipe';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     UpdateBookComponent,
     FeaturedProductsComponent,
     AgePipe,
-    WishlistComponent
+    WishlistComponent,
+    ReviewComponent,
   ],
 
   imports: [
