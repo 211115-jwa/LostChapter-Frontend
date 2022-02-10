@@ -28,6 +28,7 @@ export class DisplayProductModalComponent implements OnInit {
   added?: boolean;
   addedToCart = "Item have been added to Cart";
   bookReviews!: Review[];
+  
 
   role!: String;
 
