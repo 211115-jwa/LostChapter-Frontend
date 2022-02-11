@@ -5,10 +5,8 @@
 <div class="slick-wrapper">
   <div slickContainer #slickController="slick" [slickConfig]="config" >
     <ng-container *ngIf="slickController.initialize" >
-      <div style = "cursor: pointer; border: red 1px solid; display:flex; justify-content: center; flex-direction: column; align-items: center; margin: .5em;" class = "featured-item" slickItem *ngFor="let item of showResults">
+      <div style = "cursor: pointer; display:flex; justify-content: center; flex-direction: column; align-items: center; margin: .5em;" class = "featured-item" slickItem *ngFor="let item of showResults">
             <img [src]="item.bookImage"  (click)="onDisplayProduct(item.bookId)" style="border-radius: 8px;width: 200px; height: 200px; " class="p-10">
-        
-
           <div style="margin: auto; color: black;"><strong>Book Title: </strong> {{item.bookName}} <br>
 
          </div>
