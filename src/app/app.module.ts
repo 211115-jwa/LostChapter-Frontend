@@ -48,6 +48,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 
 import { ReviewComponent } from './review/review.component';
 import {MatSliderModule} from '@angular/material/slider';
+import { ReviewcardComponent } from './reviewcard/reviewcard.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import {MatSliderModule} from '@angular/material/slider';
     FeaturedProductsComponent,
     AgePipe,
     WishlistComponent,
-    ReviewComponent
+    ReviewComponent,
+    ReviewcardComponent,
   ],
 
   imports: [
