@@ -1,9 +1,9 @@
 <div class="display-product">
   <br>
-  <mat-dialog-content>
+  <mat-dialog-content class="display-product">
     <div class="container" style="display: flex;">
       <div style="width: 95%;">
-        <h4><strong>{{data.bookName}}</strong></h4>
+        <h4><strong>Book Information</strong></h4>
       </div>
       <div style="flex-grow:1;" class="example-button-row" *ngIf="role==='Customer'">
         <button mat-raised-button color="primary" (click)="onAddToCart(selectedProducts.bookId)"> {{addToCart}}

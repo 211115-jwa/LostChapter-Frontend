@@ -3,9 +3,11 @@
   background-color: var(--background-tertiary);
   color: var(--foreground-quaternary);
   box-shadow: var(--background-tertiary-shadow);
-  width:800px;
+  width: 90%;
   /* height: 1000px; */
 }
+
+
 
 #mSliderDiv{
   background-color: var(--background-tertiary);

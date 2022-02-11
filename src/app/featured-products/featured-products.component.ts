@@ -64,8 +64,8 @@ export class FeaturedProductsComponent implements OnInit {
 
   onDisplayProduct(book: SearchProducts){
     let modalRef = this.dialog.open(DisplayProductModalComponent, {
-      width: '900px',
-      height: '600px',
+      //width: '780px',
+      //height: '600px',
       data: book
     });
 

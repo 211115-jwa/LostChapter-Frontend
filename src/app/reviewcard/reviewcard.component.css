@@ -1,4 +1,9 @@
 .reviewdiv {
     background-color: var(--background-tertiary);
-
+    font-family: sans-serif;
+  background-color: var(--background-tertiary);
+  color: var(--foreground-quaternary);
+  box-shadow: var(--background-tertiary-shadow);
+  width: 90%;
+ 
 }
