@@ -47,6 +47,7 @@ import { AgePipe } from './age.pipe';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ReviewComponent } from './review/review.component';
 import {MatSliderModule} from '@angular/material/slider';
+import { ReviewcardComponent } from './reviewcard/reviewcard.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {MatSliderModule} from '@angular/material/slider';
     AgePipe,
     WishlistComponent,
     ReviewComponent,
+    ReviewcardComponent,
   ],
 
   imports: [
