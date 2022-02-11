@@ -33,6 +33,11 @@ h6 {
   font-family: "Poppins", sans-serif;
 }
 
+.content{
+        font-family: "Open Sans", sans-serif;
+      
+}
+
 .btn-outline-primary {
     background-color: #fff;
     color: #f46036;
