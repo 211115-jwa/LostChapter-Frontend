@@ -62,8 +62,16 @@
 
           <label for="quantity">Qty:</label>
           <select name="qty" id="qty" [(ngModel)]="quantity">
-            <option selected>1</option>
-            <option>2</option>
+            <option selected>0</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=1">1</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=2">2</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=3">3</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=4">4</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=5">5</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=6">6</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=7">7</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=8">8</option>
+            <!-- <option>2</option>
             <option>3</option>
             <option>4</option>
             <option>5</option>
@@ -71,8 +79,10 @@
             <option>7</option>
             <option>8</option>
             <option>9</option>
-            <option>10</option>
+            <option>10</option> -->
           </select>
+
+          <h2 *ngIf="selectedProducts.quantityOnHand! == 0">This book is out of stock.</h2>
         <hr>
 
         <h4>Description</h4> <br>
@@ -91,7 +101,9 @@
     <mat-dialog-content>
       <div style="display: flex; align-items: right; justify-content: right;">
         <br>
-        <button style="background-color: blue; color: burlywood;" mat-raised-button (click)="onCloseDisplayProduct()" >Cancel</button>
+        <button style="background-color: blue;  margin: 1em ; color: burlywood;" mat-raised-button (click)="onCloseDisplayProduct()" >Cancel</button>
+        <br>
+        <button *ngIf="quantity>0 " style="background-color: #F46036; margin: 1em ; color: black;" mat-raised-button (click)="  onAddToCart(selectedProducts.bookId)" >Add To Cart</button>
      </div>
     </mat-dialog-content>
 

@@ -1,5 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SearchProducts } from 'src/app/models/SearchProduct';
 import { CartService } from 'src/app/services/cart.service';
@@ -8,27 +12,38 @@ import { Cart } from 'src/app/models/Cart';
 import { LoginService } from '../services/login.service';
 import { SearchProductsService } from '../services/search-products.service';
 
-
 @Component({
   selector: 'app-display-product-modal',
   templateUrl: './display-product-modal.component.html',
-  styleUrls: ['./display-product-modal.component.css']
+  styleUrls: ['./display-product-modal.component.css'],
 })
 export class DisplayProductModalComponent implements OnInit {
-
-  constructor(private cartService: CartService, private router: Router, private loginService: LoginService, private addProductToCartService: SearchProductsService, public dialog: MatDialog, private getGenreService: SearchProductsService, public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA)public data: string) { }
+  // numbers: number[];
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private loginService: LoginService,
+    private addProductToCartService: SearchProductsService,
+    public dialog: MatDialog,
+    private getGenreService: SearchProductsService,
+    public dialogRef: MatDialogRef<DisplayProductModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: string
+  ) {
+    // this.numbers = Array(5).fill().map((x,i)=>i);
+  }
 
   selectedProducts!: SearchProducts;
   errorMessage!: string;
   cartId!: number;
-  quantity = 1;
+  quantity = 0;
   userId!: number;
   added?: boolean;
-  addedToCart = "Item have been added to Cart";
+  addedToCart = 'Item have been added to Cart';
+
 
   role!: String;
 
-  addToCart = "Add to Cart";
+  addToCart = 'Add to Cart';
 
   ngOnInit(): void {
     this.checkLoginStatus();
@@ -38,7 +53,7 @@ export class DisplayProductModalComponent implements OnInit {
     this.dialogRef.close('Confirm');
   }
 
-  checkLoginStatus(){
+  checkLoginStatus() {
     this.loginService.checkLoginStatus().subscribe({
       next: (res) => {
         if (res.status === 200) {
@@ -59,19 +74,27 @@ export class DisplayProductModalComponent implements OnInit {
     });
   }
 
-  onAddToCart(productId: number){
-    this.addProductToCartService.addToCart(String(productId), String(this.quantity), String(this.cartId)).subscribe({
-      next: (res) => {
-        if(res.status === 200) {
-          let body = <Cart> res.body;
-          this.added = true;
-        }
-      },
-      error: (err) => {
-        this.errorMessage = err.error;
+  onAddToCart(productId: number) {
+    let item = {
+      productId:productId,
+      quantity:this.quantity,
+      name: this.selectedProducts.bookName
+    }
+    localStorage.setItem('cart', JSON.stringify(item));
 
-      }
-    })
+
+    // this.addProductToCartService
+    //   .addToCart(String(productId), String(this.quantity), String(this.cartId))
+    //   .subscribe({
+    //     next: (res) => {
+    //       if (res.status === 200) {
+    //         let body = <Cart>res.body;
+    //         this.added = true;
+    //       }
+    //     },
+    //     error: (err) => {
+    //       this.errorMessage = err.error;
+    //     },
+    //   });
   }
-
 }
