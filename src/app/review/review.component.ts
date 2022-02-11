@@ -26,12 +26,17 @@ export class ReviewComponent implements OnInit {
   }
 
 
-sendRev() {
+async sendRev() {
   //this.userid = this.userServ.loggedInUser.id;
  // this.review.user = this.userid;
   this.review.book = this.revServ.bookId;
  console.log(this.review);
-   this.revServ.sendReview(this.review);
+ 
+  await this.revServ.sendReview(this.review).subscribe(
+    (resp: Review) => {
+      this.review = resp;
+     // console.log(this.review);
+    });
      
     alert("Review Submitted!");
 

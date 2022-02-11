@@ -30,9 +30,9 @@ review!:Review;
       observe: 'response'
     })
   }
-  sendReview(review:Review){
+  sendReview(review:Review): Observable<Review>{
     console.log(review);
-    this.http.post(`http://localhost:8081/reviews/`, review);
+    return this.http.post<Review>(`http://localhost:8081/reviews/`, review);
   }
 
 

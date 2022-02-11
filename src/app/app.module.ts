@@ -46,6 +46,7 @@ import { NgxSlickJsModule } from 'ngx-slickjs';
 import { AgePipe } from './age.pipe';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { ReviewComponent } from './review/review.component';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import { ReviewComponent } from './review/review.component';
     NgxPaginationModule,
     FontAwesomeModule,
     MatTabsModule,
+    MatSliderModule,
     NgxSlickJsModule.forRoot({
       links: {
         jquery: "https://code.jquery.com/jquery-3.4.0.min.js",
