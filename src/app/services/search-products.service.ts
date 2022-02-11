@@ -38,7 +38,7 @@ export class SearchProductsService {
   }
 
   getBookBySales(){
-    return this.http.get(`http://localhost:8081/book/sales`, {
+    return this.http.get(`http://localhost:8081/book/books/sales`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/sales`, {
       observe: 'response'
     })

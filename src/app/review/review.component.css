@@ -1,4 +1,5 @@
 .review-card {
+<<<<<<< HEAD
     max-width: 550px;
   }
   
@@ -6,3 +7,37 @@
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
   }
+=======
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+  }
+  #revtitle{
+    width: 250px;
+    height: 40px;
+  }
+    
+    #revtext{
+        width: 400px;
+        height: 150px;
+        padding: 12px 20px;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        word-break: break-all;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        overflow-wrap: break-word;
+      }
+      .sample{
+          text-align: center;
+          justify-content: right;
+      }
+      .reviewcard{
+          justify-self:auto;
+      }
+      #revsubbtn{
+        background-color: coral;
+      }
+>>>>>>> 61ed51f5cc58f0f23760a9562c52e969def4be1a
