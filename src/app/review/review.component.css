@@ -1,13 +1,3 @@
-.review-card {
-<<<<<<< HEAD
-    max-width: 550px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-=======
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -40,4 +30,3 @@
       #revsubbtn{
         background-color: coral;
       }
->>>>>>> 61ed51f5cc58f0f23760a9562c52e969def4be1a
