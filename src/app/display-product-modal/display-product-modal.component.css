@@ -3,8 +3,12 @@
   background-color: var(--background-tertiary);
   color: var(--foreground-quaternary);
   box-shadow: var(--background-tertiary-shadow);
-  width:780px;
-  height: 600px;
+  width:800px;
+  /* height: 1000px; */
+}
+
+#mSliderDiv{
+  background-color: var(--background-tertiary);
 }
 
 header {
@@ -44,7 +48,9 @@ header {
   width: 50%;
   height: 50%;
 }
-
+h2 {
+  color: #e77600 ;
+}
 /* sectioning completed */
 
 

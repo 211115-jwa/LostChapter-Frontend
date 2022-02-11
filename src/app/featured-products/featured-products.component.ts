@@ -62,14 +62,14 @@ export class FeaturedProductsComponent implements OnInit {
   }
 
 
-  onDisplayProduct(bookId: number){
+  onDisplayProduct(book: SearchProducts){
     let modalRef = this.dialog.open(DisplayProductModalComponent, {
-      width: '800px',
+      width: '900px',
       height: '600px',
-      data: 'Book Information'
+      data: book
     });
 
-      this.getGenreService.getBookById(bookId).subscribe((res) => {
+      this.getGenreService.getBookById(book.bookId).subscribe((res) => {
           let responseObj = <SearchProducts>res.body;
           this.selectedProducts = responseObj
 
