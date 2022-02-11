@@ -20,7 +20,11 @@ import { ReviewComponent } from '../review/review.component';
 export class DisplayProductModalComponent implements OnInit {
  log = console.log;
   reviews!: Review[];
-  constructor(private revServ:ReviewService,private cartService: CartService, private router: Router, private loginService: LoginService, private addProductToCartService: SearchProductsService, public dialog: MatDialog, private getGenreService: SearchProductsService, private reviewServ: ReviewService, public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA)public data: string) { }
+  constructor(private revServ:ReviewService,private cartService: CartService,
+     private router: Router, private loginService: LoginService,
+      private addProductToCartService: SearchProductsService, public dialog: MatDialog,
+       private getGenreService: SearchProductsService, private reviewServ: ReviewService, 
+       public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA) public data: SearchProducts) { }
 
   selectedProducts!: SearchProducts;
   errorMessage!: string;
@@ -37,7 +41,7 @@ export class DisplayProductModalComponent implements OnInit {
 
    ngOnInit() {
     this.checkLoginStatus();
-   this.viewBookReviews(2);
+   this.viewBookReviews(this.data.bookId);
    // console.log(this.reviews);
   }
 
