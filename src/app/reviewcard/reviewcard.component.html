@@ -1,0 +1,26 @@
+<div class="reviewdiv">
+    <mat-card class="review-card">
+      <mat-card-header>
+        <div mat-card-avatar>
+            <!-- <img [src]="book.image">  maybe ?? -->
+        </div>
+        <div>
+          <mat-card-title>{{ review2.reviewTitle }}</mat-card-title>
+          <mat-card-subtitle><br>
+          
+            <mat-label>Rating: {{ review2.ratingOne }}</mat-label>
+          </mat-card-subtitle>
+        </div>
+      </mat-card-header>
+      <div class='rightdd'>
+        <mat-card-content>Summary
+          <p>
+            <textarea readonly name="fieldName" ngDefaultControl id="reviewDesc" [(ngModel)]='review2.reviewText'></textarea>
+            <br>
+            <mat-card-actions>
+            </mat-card-actions>
+          </p>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>

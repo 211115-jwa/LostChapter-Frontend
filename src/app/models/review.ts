@@ -6,9 +6,9 @@ export class Review {
         reviewId!: number;
         book!: number;
         user!: number;
-        reviewTitle!: String;
-        reviewText!: String;
+        reviewTitle!: string;
+        reviewText!: string;
         ratingOne!: number;
-        sentAt!: "";
+        sentAt!: string;
     }
 

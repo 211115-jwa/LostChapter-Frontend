@@ -19,6 +19,7 @@ import { ReviewComponent } from '../review/review.component';
 })
 export class DisplayProductModalComponent implements OnInit {
  log = console.log;
+  reviews!: Review[];
   constructor(private revServ:ReviewService,private cartService: CartService, private router: Router, private loginService: LoginService, private addProductToCartService: SearchProductsService, public dialog: MatDialog, private getGenreService: SearchProductsService, private reviewServ: ReviewService, public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA)public data: string) { }
 
   selectedProducts!: SearchProducts;
@@ -35,21 +36,32 @@ export class DisplayProductModalComponent implements OnInit {
 
   addToCart = "Add to Cart";
 
-  ngOnInit(): void {
+   ngOnInit() {
     this.checkLoginStatus();
+   this.viewBookReviews(2);
+   // console.log(this.reviews);
   }
+
+  viewBookReviews(bookId: number) {
+    this.revServ.getAllReviewsbyBookId(bookId).subscribe((res) => {
+      this.reviews = <Review[]> res.body;
+     
+    })
+  
+  }
+
 
   onCloseDisplayProduct() {
     this.dialogRef.close('Confirm');
   }
 
   
-  viewBookReviews(bookId:number) {
+  addBookReview(bookId:number) {
     this.log(bookId);
 this.revServ.bookId = bookId;
   
 this.dialog.open(ReviewComponent);
-  //   });
+
   }
 
   checkLoginStatus(){
