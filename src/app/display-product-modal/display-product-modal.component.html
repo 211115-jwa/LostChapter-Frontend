@@ -3,7 +3,7 @@
   <mat-dialog-content>
     <div class="container" style="display: flex;">
       <div style="width: 95%;">
-        <h4><strong>{{data}}</strong></h4>
+        <h4><strong>{{data.bookName}}</strong></h4>
       </div>
       <div style="flex-grow:1;" class="example-button-row" *ngIf="role==='Customer'">
         <button mat-raised-button color="primary" (click)="onAddToCart(selectedProducts.bookId)"> {{addToCart}}
@@ -105,13 +105,19 @@
         (click)="addBookReview(selectedProducts.bookId)"> add Review </button>
       <button style="background-color: blue; color: burlywood;" mat-raised-button
         (click)="onCloseDisplayProduct()">Cancel</button>
+
+     
     </div>
-<div><app-reviewcard id="mSliderDiv" *ngFor="let eachReview of reviews"   [review2]="eachReview"></app-reviewcard>
-
-
-</div>
-
+  
+    
   </mat-dialog-content>
+
+
+  <br>
+  <br>
+<div>
+ <h2>{{ selectedProducts.bookName }} Reviews</h2>
+ <app-reviewcard id="mSliderDiv" *ngFor="let eachReview of reviews"   [review2]="eachReview"></app-reviewcard></div>
 
 
 </div>
