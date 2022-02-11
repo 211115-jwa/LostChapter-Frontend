@@ -38,7 +38,7 @@ async sendRev() {
      // console.log(this.review);
     });
      
-    alert("Review Submitted!");
+   // alert("Review Submitted!");
 
 }
 

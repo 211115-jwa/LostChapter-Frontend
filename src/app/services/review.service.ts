@@ -49,13 +49,19 @@ review!:Review;
     );
   }
 
-  getAllReviewsForBook(bookId: number) {
-    return this.http.put(`http://localhost:8081/reviews//book/${bookId}`,
-      //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/reviews/book/${bookId}`,
-      {
-      observe: 'response'
-      }
-    );
-  }
+  async getAllReviewsForBook(bookId: number) {
+    let resp = await fetch(`http://localhost:8081/reviews/book/`+bookId);
+    if (resp.status===200) {
+      return await resp.json();
+    }
+
+    }
+    //  return this.http.put(`http://localhost:8081/reviews//book/${bookId}`,
+    //   //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/reviews/book/${bookId}`,
+    //   {
+    //   observe: 'response'
+    //   }
+    // );
+ 
 
 }

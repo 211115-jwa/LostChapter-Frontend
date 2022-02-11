@@ -48,7 +48,6 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { ReviewComponent } from './review/review.component';
 import {MatSliderModule} from '@angular/material/slider';
 
-
 @NgModule({
   declarations: [
     AppComponent,
