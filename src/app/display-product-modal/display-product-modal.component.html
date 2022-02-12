@@ -106,12 +106,18 @@
   <!-- <br> -->
 
     <mat-dialog-content>
-      <div style="display: flex; align-items: right; justify-content: right;">
-        <br>
-        <button style="background-color: blue;  margin: 1em ; color: burlywood;" mat-raised-button (click)="onCloseDisplayProduct()" >Cancel</button>
+      <div >
         <br>
         <button *ngIf="quantity>0 " style="background-color: #F46036; margin: 1em ; color: black;" mat-raised-button (click)="  onAddToCart(selectedProducts.bookId)" >Add To Cart</button>
      </div>
     </mat-dialog-content>
+  
+<div>
+ <h2 class="titleRev">{{ selectedProducts.bookName }} Reviews</h2>
+ <app-reviewcard id="mSliderDiv" *ngFor="let eachReview of reviews"   [review2]="eachReview">
+
+ </app-reviewcard>
+</div>
+
 
 
