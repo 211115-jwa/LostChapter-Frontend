@@ -1,9 +1,18 @@
-.reviewdiv {
+.review-card {
     background-color: var(--background-tertiary);
     font-family: sans-serif;
   background-color: var(--background-tertiary);
   color: var(--foreground-quaternary);
   box-shadow: var(--background-tertiary-shadow);
-  width: 90%;
- 
+  width: 100%;
+ text-align: center;
 }
+.reviewText{
+  font-size:large;
+}
+.reviewRating {
+  font-size: medium;
+}
+/* .review-card{
+  padding: 4px;
+} */

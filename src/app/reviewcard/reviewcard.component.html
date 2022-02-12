@@ -1,26 +1,34 @@
-<div class="reviewdiv">
-    <mat-card class="review-card">
-      <mat-card-header>
+<mat-card class="review-card">
+    <mat-card>
+      <div>
         <!-- <div mat-card-avatar>
              <img [src]="book.image">  maybe ??
         </div> -->
         <div>
-          <mat-card-title>{{ review2.reviewTitle }}</mat-card-title>
-          <mat-card-subtitle><br>
+          <mat-card-title style="text-align: left;">{{ review2.reviewTitle }}</mat-card-title>
+         
+          <mat-card-subtitle  style="text-align: left;"> Review by: Author &nbsp;&nbsp;&nbsp; Posted on: {{review2.sentAt}}</mat-card-subtitle>
+          <mat-divider inset></mat-divider>
+          <br>
+          <div>
+            <br>
+                <mat-card-content class="reviewText"> {{review2.reviewText}} </mat-card-content>
           
-            <mat-label>Rating: {{ review2.ratingOne }}</mat-label>
-          </mat-card-subtitle>
+            <mat-label class="reviewRating" >Plot Rating: {{ review2.ratingOne }} &nbsp;&nbsp; Content Rating: {{review2.ratingTwo}} &nbsp;&nbsp; Time Rating: {{review2.ratingThree}} </mat-label>
+          </div>
         </div>
-      </mat-card-header>
-      <div class='rightdd'>
+      </div>
+     <!--  <div class='rightdd'>
         <mat-card-content>Summary
-          <p>
-            <textarea readonly name="fieldName" ngDefaultControl id="reviewDesc" [(ngModel)]='review2.reviewText'></textarea>
+     
+            <div readonly name="fieldName" ngDefaultControl id="reviewDesc" >{{ review2.reviewText }}</div>
             <br>
             <mat-card-actions>
             </mat-card-actions>
-          </p>
+ 
         </mat-card-content>
       </div>
+      -->
     </mat-card>
-  </div>
+</mat-card>
+  

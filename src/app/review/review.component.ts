@@ -16,6 +16,8 @@ export class ReviewComponent implements OnInit {
     reviewTitle: "title for your review",
     reviewText: "tell us about the movie your reviewing",
     ratingOne: 0,
+    ratingTwo: 0,
+    ratingThree: 0,
     sentAt: "",
     user:1,
     book:0

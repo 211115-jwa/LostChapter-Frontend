@@ -1,6 +1,6 @@
 <div class="display-product">
   <br>
-  <mat-dialog-content class="display-product">
+  <mat-dialog-content >
     <div class="container" style="display: flex;">
       <div style="width: 95%;">
         <h4><strong>Book Information</strong></h4>
@@ -88,23 +88,23 @@
         </div>
         <hr>
         <br>
-        <strong>
+        <!-- <strong>
           <div style="color: green; size: 28px; font-family: 'Times New Roman', Times, serif;" *ngIf="added"
             id="success-message">{{addedToCart}}</div>
-        </strong>
+        </strong> -->
 
       </div>
     </div>
   </section>
-  <br>
+  <!-- <br> -->
 
   <mat-dialog-content>
     <div style="display: flex; align-items: right; justify-content: right;">
       <br>
       <button style="background-color: rgb(160, 160, 231); color: rgb(0, 0, 0);" mat-raised-button
-        (click)="addBookReview(selectedProducts.bookId)"> add Review </button>
+        (click)="addBookReview(selectedProducts.bookId)"> Add Review </button> &nbsp;&nbsp;&nbsp;
       <button style="background-color: blue; color: burlywood;" mat-raised-button
-        (click)="onCloseDisplayProduct()">Cancel</button>
+        (click)="onCloseDisplayProduct()">Close</button>  &nbsp;&nbsp;&nbsp;
 
      
     </div>
@@ -112,11 +112,9 @@
     
   </mat-dialog-content>
 
-
-  <br>
-  <br>
+<br>
 <div>
- <h2>{{ selectedProducts.bookName }} Reviews</h2>
+ <h2 class="titleRev">{{ selectedProducts.bookName }} Reviews</h2>
  <app-reviewcard id="mSliderDiv" *ngFor="let eachReview of reviews"   [review2]="eachReview"></app-reviewcard></div>
 
 

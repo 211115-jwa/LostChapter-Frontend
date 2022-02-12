@@ -1,9 +1,13 @@
+    
+    .reviewcard{
     text-align: center;
     justify-content: center;
     align-items: center;
     max-width: 400px;
   }
   #revtitle{
+    align-items: justify;
+    text-align: center;
     width: 250px;
     height: 40px;
   }

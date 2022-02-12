@@ -9,6 +9,8 @@ export class Review {
         reviewTitle!: string;
         reviewText!: string;
         ratingOne!: number;
+        ratingTwo!: number;
+        ratingThree!: number;
         sentAt!: string;
     }
 
