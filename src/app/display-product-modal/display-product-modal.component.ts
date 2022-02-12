@@ -1,5 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SearchProducts } from 'src/app/models/SearchProduct';
 import { CartService } from 'src/app/services/cart.service';
@@ -11,11 +15,10 @@ import { ReviewService } from '../services/review.service';
 import { Review } from '../models/review';
 import { ReviewComponent } from '../review/review.component';
 
-
 @Component({
   selector: 'app-display-product-modal',
   templateUrl: './display-product-modal.component.html',
-  styleUrls: ['./display-product-modal.component.css']
+  styleUrls: ['./display-product-modal.component.css'],
 })
 export class DisplayProductModalComponent implements OnInit {
  log = console.log;
@@ -29,7 +32,7 @@ export class DisplayProductModalComponent implements OnInit {
   selectedProducts!: SearchProducts;
   errorMessage!: string;
   cartId!: number;
-  quantity = 1;
+  quantity = 0;
   userId!: number;
   added?: boolean;
   addedToCart = "Item have been added to Cart";
@@ -38,7 +41,7 @@ export class DisplayProductModalComponent implements OnInit {
 
   role!: String;
 
-  addToCart = "Add to Cart";
+  addToCart = 'Add to Cart';
 
    ngOnInit() {
     this.checkLoginStatus();
@@ -89,20 +92,26 @@ this.dialog.open(ReviewComponent);
     });
   }
 
-  onAddToCart(productId: number){
-    this.addProductToCartService.addToCart(String(productId), String(this.quantity), String(this.cartId)).subscribe({
-      next: (res) => {
-        if(res.status === 200) {
-          let body = <Cart> res.body;
-          this.added = true;
-        }
-      },
-      error: (err) => {
-        this.errorMessage = err.error;
-
-      }
-    })
+  onAddToCart(productId: number) {
+    let item = {
+      productId:productId,
+      quantity:this.quantity,
+      name: this.selectedProducts.bookName
+    }
+    localStorage.setItem('cart', JSON.stringify(item));
   }
-
+    // this.addProductToCartService
+    //   .addToCart(String(productId), String(this.quantity), String(this.cartId))
+    //   .subscribe({
+    //     next: (res) => {
+    //       if (res.status === 200) {
+    //         let body = <Cart>res.body;
+    //         this.added = true;
+    //       }
+    //     },
+    //     error: (err) => {
+    //       this.errorMessage = err.error;
+    //     },
+    //   });
 
 }
