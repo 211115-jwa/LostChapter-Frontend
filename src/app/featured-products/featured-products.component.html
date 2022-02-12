@@ -4,21 +4,26 @@
 <!--https://stackblitz.com/edit/ngx-slickjs?file=src%2Fapp%2Fapp.component.html-->
 <div class="slick-wrapper">
   <div slickContainer #slickController="slick" [slickConfig]="config" >
-    <ng-container *ngIf="slickController.initialize" >
+    <ng-container *ngIf="slickController.initialize">
       <div slickItem *ngFor="let item of showResults">
-            <img [src]="item.bookImage"  (click)="onDisplayProduct(item)" style="border-radius: 8px;width: 200px; height: 200px; position: relative;" class="p-10">
-          <br><br>
-
-        <!-- <div>
-          <div slickItem style="margin: auto; color: black; text-align:left; position: absolute; bottom: 0; left: 0;"><strong>Book Title: </strong> {{item.bookName}} <br>
-           <h3 slickItem id="salesPrice" style="margin: auto; color: black; text-align:left; position: absolute; bottom: 0; left: 0;">Price: <span id="salesPrice">${{(item.bookPrice - (item.bookPrice * item.saleDiscountRate)) | number:'1.2-2' }}</span></h3>
-         </div>
-        </div> -->
-         <br>
-
+        <img [src]="item.bookImage" (click)="onDisplayProduct(item)"
+          style="border-radius: 8px;width: 200px; height: 200px; position: relative;" class="p-10">
+        <br><br>
+        <div
+          style="cursor: pointer; border: red 1px solid; display:flex; justify-content: center; flex-direction: column; align-items: center; margin: .5em;"
+          class="featured-item" slickItem *ngFor="let item of showResults">
+          <img [src]="item.bookImage" (click)="onDisplayProduct(item)"
+            style="border-radius: 8px;width: 200px; height: 200px; " class="p-10">
+        </div>
+    
+        <div style="margin: auto; color: black;"><strong>Book Title: </strong> {{item.bookName}} <br>
+    
+        </div>
+        <h3 class="salesPrice" style="margin: auto; color: black; ">Price: <span id="salesPrice">${{(item.bookPrice -
+            (item.bookPrice * item.saleDiscountRate)) | number:'1.2-2' }}</span></h3>
+    
       </div>
     </ng-container>
-
   </div>
 
 </div>

@@ -10,6 +10,7 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  @Output() login: EventEmitter<any> = new EventEmitter();
   constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit(): void {
@@ -25,24 +26,30 @@ export class LoginComponent implements OnInit {
 
   // perform service layer functionality here
   onLoggedIn() {
-    this.loginService.login(this.username, this.password).subscribe((res) => {
-      if (res.status === 201 || res.status === 200) {
-        let body = <User> res.body;
-        console.log(res);
-        if (body.role === 'Customer'){
-          this.router.navigate(['/home']); // navigates to customer route page -> redirecting to this route for now until we have full functionalities of the routes
-        }
+    this.loginService.login(this.username, this.password).then((res) => {
 
-        if (body.role === 'Admin'){
-          this.router.navigate(['/home']); // navigates to admin route page
-        }
-      }
-    },
-      (err) => {
-        this.errorMessage = err.error;
-      });
+      this.login.emit();
 
-  }
+    //   if (res.status === 201 || res.status === 200) {
+    //     let body = <User> res.body;
+    //     console.log(res);
+    //     if (body.role === 'Customer'){
+    //       this.router.navigate(['/home']); // navigates to customer route page -> redirecting to this route for now until we have full functionalities of the routes
+    //     }
+
+    //     if (body.role === 'Admin'){
+    //       this.router.navigate(['/home']); // navigates to admin route page
+    //     }
+    //   }
+    // },
+    //   (err) => {
+    //     this.errorMessage = err.error;
+    //   });
+
+  })
+}
+
+
 
 
   checkIfLoggedIn() {

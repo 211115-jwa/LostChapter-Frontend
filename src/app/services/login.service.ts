@@ -1,21 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../models/User';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.loggedInUser = null;
+
+  }
+
+  loggedInUser: any| undefined | null;
+  regHeaders = { 'Content-type': 'application/json' };
+  jwtHeaders = { 'Content-type': 'application/json' };
+
+
 
   checkLoginStatus() {
-    return this.http.get(`http://localhost:8081/loginstatus`,{
+    let token = localStorage.getItem('Token');
+    return this.http.get(`http://localhost:8081/users/${token}/auth`,{
       //'http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/loginstatus', {
       observe: 'response',
       withCredentials: true,
     });
   }
 
-  login(username: string, password: string){
+  logIn(username: string, password: string){
     return this.http.post(`http://localhost:8081/login`,{
       //'http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/login', {
       "username": username,
@@ -24,6 +35,32 @@ export class LoginService {
       withCredentials: true,
       observe: 'response'
     });
+  }
+  
+    async login(username: string, password: string){
+    let credentials = {
+      username: username,
+      password: password,
+    };
+    
+    let resp = await fetch(`http://localhost:8081/users/auth`, {
+      method: 'POST',
+      body: JSON.stringify(credentials),
+      headers: this.regHeaders,
+    });
+    if (resp.status === 200) {
+      let token = await resp.json();
+      localStorage.setItem('Token', token);
+      console.log(token)
+      // this.checkLoginStatus();
+      // window.location.href = '#';
+      document.getElementById('error-message')!.style.display = 'none';
+    } else {
+      console.log("Did not work")
+      document.getElementById('error-message')!.style.display = 'block';
+    }
+
+ 
   }
 
   logout() {
@@ -68,3 +105,4 @@ export class LoginService {
     );
   }
 }
+

@@ -13,4 +13,5 @@ export interface SearchProducts  {
   saleIsActive: boolean;
   saleDiscountRate: number;
   quantity: number;
+  quantityOnHand:number;
 }
