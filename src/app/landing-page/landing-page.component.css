@@ -110,6 +110,7 @@ h6 {
 
 
 
+
  .content .first-section {
     margin-top: 5em;
     margin-bottom: 5em;
@@ -120,6 +121,12 @@ h6 {
     font-family: "Poppins", sans-serif;
     animation: fadeIn 3s;
     animation-fill-mode: forwards;
+  }
+
+  .content .first-section h1 {
+    font-family: "Poppins", sans-serif  !important;
+    font-size: 40px !important;
+    font-stretch: 100% !important;
   }
  .content .first-section p {
     font-family: "Open Sans", sans-serif;
