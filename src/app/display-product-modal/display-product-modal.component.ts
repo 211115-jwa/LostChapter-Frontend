@@ -62,6 +62,7 @@ export class DisplayProductModalComponent implements OnInit {
     this.dialogRef.close('Confirm');
   }
 
+  
   addBookReview(bookId:number) {
     this.log(bookId);
 this.revServ.bookId = bookId;
@@ -70,7 +71,7 @@ this.dialog.open(ReviewComponent);
 
   }
 
-  checkLoginStatus() {
+  checkLoginStatus(){
     this.loginService.checkLoginStatus().subscribe({
       next: (res) => {
         if (res.status === 200) {
@@ -112,5 +113,5 @@ this.dialog.open(ReviewComponent);
     //       this.errorMessage = err.error;
     //     },
     //   });
-  
+
 }
