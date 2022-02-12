@@ -35,7 +35,6 @@ export class DisplayProductModalComponent implements OnInit {
   quantity = 0;
   userId!: number;
   added?: boolean;
-
   addedToCart = "Item have been added to Cart";
   bookReviews!: Review[];
   
@@ -63,7 +62,7 @@ export class DisplayProductModalComponent implements OnInit {
     this.dialogRef.close('Confirm');
   }
 
-
+  
   addBookReview(bookId:number) {
     this.log(bookId);
 this.revServ.bookId = bookId;
@@ -72,7 +71,7 @@ this.dialog.open(ReviewComponent);
 
   }
 
-  checkLoginStatus() {
+  checkLoginStatus(){
     this.loginService.checkLoginStatus().subscribe({
       next: (res) => {
         if (res.status === 200) {
@@ -100,7 +99,6 @@ this.dialog.open(ReviewComponent);
       name: this.selectedProducts.bookName
     }
     localStorage.setItem('cart', JSON.stringify(item));
-
   }
     // this.addProductToCartService
     //   .addToCart(String(productId), String(this.quantity), String(this.cartId))
@@ -115,5 +113,5 @@ this.dialog.open(ReviewComponent);
     //       this.errorMessage = err.error;
     //     },
     //   });
-  
+
 }

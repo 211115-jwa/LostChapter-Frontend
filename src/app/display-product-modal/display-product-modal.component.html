@@ -62,6 +62,22 @@
       </div>
     </div>
 
+    <div class="item-info-parent">
+      <div class="main-info">
+        <h4>{{selectedProducts?.bookName}}</h4>
+        <h3>By: <span id="author"> <strong style="color: burlywood;">{{selectedProducts?.author}}</strong> </span>
+          (Author)</h3>
+
+        <h3>ISBN: <span id="isbn" style="color: burlywood;"> <strong>{{selectedProducts?.isbn}}</strong> </span></h3>
+        <h3>Edition: <span id="edition" style="color: burlywood;"><strong>{{selectedProducts?.edition}}</strong> </span>
+        </h3>
+        <h3>Price: <span style="color: burlywood;">${{selectedProducts?.bookPrice}}</span></h3>
+        <div *ngIf="selectedProducts?.saleIsActive === true">
+          <h3>Sales Price: <span id="price">${{(selectedProducts.bookPrice - (selectedProducts.bookPrice *
+              selectedProducts.saleDiscountRate)) | number:'1.2-2' }}</span></h3>
+        </div>
+
+
           <label for="quantity">Qty:</label>
           <select name="qty" id="qty" [(ngModel)]="quantity">
             <option selected>0</option>
@@ -106,18 +122,19 @@
   <!-- <br> -->
 
     <mat-dialog-content>
-      <div >
+      <div style="display: flex; align-items: right; justify-content: right;">
         <br>
+        
+       
         <button *ngIf="quantity>0 " style="background-color: #F46036; margin: 1em ; color: black;" mat-raised-button (click)="  onAddToCart(selectedProducts.bookId)" >Add To Cart</button>
      </div>
     </mat-dialog-content>
-  
+
+<br>
 <div>
  <h2 class="titleRev">{{ selectedProducts.bookName }} Reviews</h2>
  <app-reviewcard id="mSliderDiv" *ngFor="let eachReview of reviews"   [review2]="eachReview">
-
  </app-reviewcard>
 </div>
-
 
 
