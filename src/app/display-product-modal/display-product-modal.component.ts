@@ -35,7 +35,6 @@ export class DisplayProductModalComponent implements OnInit {
   quantity = 0;
   userId!: number;
   added?: boolean;
-
   addedToCart = "Item have been added to Cart";
   bookReviews!: Review[];
   
@@ -62,7 +61,6 @@ export class DisplayProductModalComponent implements OnInit {
   onCloseDisplayProduct() {
     this.dialogRef.close('Confirm');
   }
-
 
   addBookReview(bookId:number) {
     this.log(bookId);
@@ -100,7 +98,6 @@ this.dialog.open(ReviewComponent);
       name: this.selectedProducts.bookName
     }
     localStorage.setItem('cart', JSON.stringify(item));
-
   }
     // this.addProductToCartService
     //   .addToCart(String(productId), String(this.quantity), String(this.cartId))
