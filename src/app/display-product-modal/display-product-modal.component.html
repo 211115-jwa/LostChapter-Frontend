@@ -4,6 +4,19 @@
     <div class="container" style="display: flex;">
       <div style="width: 95%;">
         <h4><strong>Book Information</strong></h4>
+        <mat-dialog-content>
+          <div style="display: flex; align-items: right; justify-content: right;">
+            <br>
+            <button style="background-color: rgb(160, 160, 231); color: rgb(0, 0, 0);" mat-raised-button
+              (click)="addBookReview(selectedProducts.bookId)"> Add Review </button> &nbsp;&nbsp;&nbsp;
+            <button style="background-color: blue; color: burlywood;" mat-raised-button
+              (click)="onCloseDisplayProduct()">Close</button>  &nbsp;&nbsp;&nbsp;
+      
+           
+          </div>
+        
+          
+        </mat-dialog-content>
       </div>
       <div style="flex-grow:1;" class="example-button-row" *ngIf="role==='Customer'">
         <button mat-raised-button color="primary" (click)="onAddToCart(selectedProducts.bookId)"> {{addToCart}}
@@ -98,19 +111,7 @@
   </section>
   <!-- <br> -->
 
-  <mat-dialog-content>
-    <div style="display: flex; align-items: right; justify-content: right;">
-      <br>
-      <button style="background-color: rgb(160, 160, 231); color: rgb(0, 0, 0);" mat-raised-button
-        (click)="addBookReview(selectedProducts.bookId)"> Add Review </button> &nbsp;&nbsp;&nbsp;
-      <button style="background-color: blue; color: burlywood;" mat-raised-button
-        (click)="onCloseDisplayProduct()">Close</button>  &nbsp;&nbsp;&nbsp;
-
-     
-    </div>
-  
-    
-  </mat-dialog-content>
+ 
 
 <br>
 <div>

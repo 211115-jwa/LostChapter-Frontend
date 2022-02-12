@@ -45,6 +45,7 @@ import { FeaturedProductsComponent } from './featured-products/featured-products
 import { NgxSlickJsModule } from 'ngx-slickjs';
 import { AgePipe } from './age.pipe';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { ReviewComponent } from './review/review.component';
 import {MatSliderModule} from '@angular/material/slider';
@@ -99,6 +100,7 @@ import { ReviewcardComponent } from './reviewcard/reviewcard.component';
     BrowserModule,
     HttpClientModule,
     MatToolbarModule,
+    MatDatepickerModule,
     MatTooltipModule,
     MatMenuModule,
     NgxPaginationModule,

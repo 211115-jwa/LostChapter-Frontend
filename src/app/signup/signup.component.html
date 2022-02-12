@@ -50,7 +50,8 @@
         </mat-form-field>
 
         <mat-form-field class="signup-full-width">
-          <input
+          <input [ngModel]="birthday| date:'yyyy-MM-dd'" (ngModelChange)="birthday = $event" matInput ngDefaultControl  type="date" >
+          <!-- <input
             type="number"
             [(ngModel)]="age"
             matInput
@@ -69,7 +70,7 @@
             ngDefaultControl
             placeholder="Birthday"
             id="birthday"
-          />
+          /> -->
         </mat-form-field>
 
         <mat-form-field class="signup-full-width">
