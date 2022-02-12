@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getByGenre(this.selectedIndex,0);
-    console.log("on in: " + this.selectedIndex);
   }
 
   displayProducts: SearchProducts[] = [];
