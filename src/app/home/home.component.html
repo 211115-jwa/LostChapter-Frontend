@@ -18,7 +18,7 @@
       <div class="row row-cols-4 row-cols-sm-3 row-cols-xl-6 mb-4 pb-4 g-5" >
         <div class="col" *ngFor="let item of displayProducts"> <!--*ngFor="let item of collection | paginate {itemsPerPage: 5, currentPage: p}">-->
             <div>
-               <img id="genr" [src]="item.bookImage" (click)="onDisplayProduct(item.bookId)" style="border-radius: 8px;width: 200px; height: 200px; position: relative;" alt="Placeholder">
+               <img id="genr" [src]="item.bookImage" (click)="onDisplayProduct(item)" style="border-radius: 8px;width: 200px; height: 200px; position: relative;" alt="Placeholder">
                <br>
                <br>
               <div id="booktitlegenre" class="book-title" style="margin: auto; color: black; text-align: left;"><strong>Book Title: </strong> {{item.bookName}} <br>

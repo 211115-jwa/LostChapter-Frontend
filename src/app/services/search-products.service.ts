@@ -26,7 +26,7 @@ export class SearchProductsService {
   getSearchResult(searchItem: string){
     return this.http.get(`http://localhost:8081/book/search/${searchItem}`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/search/${searchItem}`, {
-      observe: 'response'
+        observe: 'response'
     })
   }
 

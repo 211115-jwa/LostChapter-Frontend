@@ -6,7 +6,7 @@
   <div slickContainer #slickController="slick" [slickConfig]="config" >
     <ng-container *ngIf="slickController.initialize" >
       <div slickItem *ngFor="let item of showResults">
-            <img id="featuredbooks" [src]="item.bookImage"  (click)="onDisplayProduct(item.bookId)" style="border-radius: 8px;width: 200px; height: 200px; position: relative;" class="p-10">
+            <img id="featuredbooks" [src]="item.bookImage"  (click)="onDisplayProduct(item)" style="border-radius: 8px;width: 200px; height: 200px; position: relative;" class="p-10">
           <br><br>
 
         <!-- <div>
