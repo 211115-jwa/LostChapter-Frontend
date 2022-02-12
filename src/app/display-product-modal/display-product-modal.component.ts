@@ -7,6 +7,9 @@ import { User } from 'src/app/models/User';
 import { Cart } from 'src/app/models/Cart';
 import { LoginService } from '../services/login.service';
 import { SearchProductsService } from '../services/search-products.service';
+import { ReviewService } from '../services/review.service';
+import { Review } from '../models/review';
+import { ReviewComponent } from '../review/review.component';
 
 
 @Component({
@@ -15,8 +18,13 @@ import { SearchProductsService } from '../services/search-products.service';
   styleUrls: ['./display-product-modal.component.css']
 })
 export class DisplayProductModalComponent implements OnInit {
-
-  constructor(private cartService: CartService, private router: Router, private loginService: LoginService, private addProductToCartService: SearchProductsService, public dialog: MatDialog, private getGenreService: SearchProductsService, public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA)public data: string) { }
+ log = console.log;
+  reviews!: Review[];
+  constructor(private revServ:ReviewService,private cartService: CartService,
+     private router: Router, private loginService: LoginService,
+      private addProductToCartService: SearchProductsService, public dialog: MatDialog,
+       private getGenreService: SearchProductsService, private reviewServ: ReviewService, 
+       public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA) public data: SearchProducts) { }
 
   selectedProducts!: SearchProducts;
   errorMessage!: string;
@@ -25,17 +33,39 @@ export class DisplayProductModalComponent implements OnInit {
   userId!: number;
   added?: boolean;
   addedToCart = "Item have been added to Cart";
+  bookReviews!: Review[];
+  
 
   role!: String;
 
   addToCart = "Add to Cart";
 
-  ngOnInit(): void {
+   ngOnInit() {
     this.checkLoginStatus();
+   this.viewBookReviews(this.data.bookId);
+   // console.log(this.reviews);
   }
+
+  viewBookReviews(bookId: number) {
+    this.revServ.getAllReviewsbyBookId(bookId).subscribe((res) => {
+      this.reviews = <Review[]> res.body;
+     
+    })
+  
+  }
+
 
   onCloseDisplayProduct() {
     this.dialogRef.close('Confirm');
+  }
+
+  
+  addBookReview(bookId:number) {
+    this.log(bookId);
+this.revServ.bookId = bookId;
+  
+this.dialog.open(ReviewComponent);
+
   }
 
   checkLoginStatus(){
@@ -73,5 +103,6 @@ export class DisplayProductModalComponent implements OnInit {
       }
     })
   }
+
 
 }
