@@ -7,7 +7,7 @@
         <mat-dialog-content>
           <div style="display: flex; align-items: right; justify-content: right;">
             <br>
-            <button *ngIf="quantity>0 " style="background-color: #F46036; margin-left: 1em ;  margin-right: 1em ;color: black;" mat-raised-button (click)="  onAddToCart(selectedProducts.bookId)" >Add To Cart</button>
+
             <button style="background-color: rgb(160, 160, 231); color: rgb(0, 0, 0);" mat-raised-button
               (click)="addBookReview(selectedProducts.bookId)"> Add Review </button> &nbsp;&nbsp;&nbsp;
             <button style="background-color: blue; color: burlywood;" mat-raised-button
@@ -93,6 +93,8 @@
             <option *ngIf="selectedProducts.quantityOnHand! >=9">9</option>
             <option *ngIf="selectedProducts.quantityOnHand! >=10">10</option>
           </select>
+          <button *ngIf="quantity>0 " style="background-color: #F46036;  margin: 1em ;color: black;" mat-raised-button (click)="  onAddToCart(selectedProducts.bookId)" >Add To Cart</button>
+
 
           <h2 *ngIf="selectedProducts.quantityOnHand! == 0">This book is out of stock.</h2>
         <hr>
