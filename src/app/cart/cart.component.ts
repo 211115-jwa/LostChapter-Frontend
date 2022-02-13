@@ -39,6 +39,7 @@ export class CartComponent implements OnInit {
 
 
   setUp() {
+    this.cartService.checkCart();
     this.items =this.cartService.items
   }
 
