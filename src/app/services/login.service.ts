@@ -11,7 +11,7 @@ export class LoginService {
 
   }
 
-  loggedInUser: any| undefined | null;
+  loggedInUser: User| undefined | null;
   regHeaders = { 'Content-type': 'application/json' };
   jwtHeaders = { 'Content-type': 'application/json' };
 
@@ -38,9 +38,12 @@ export class LoginService {
       headers: this.regHeaders,
     });
     if (resp.status === 200) {
-      let token = await resp.json();
-      localStorage.setItem('Token', token);
-      console.log(token)
+      let user= await resp.json();
+      localStorage.setItem('User',JSON.stringify(user) );
+      this.loggedInUser = user;
+
+      console.log(this.loggedInUser)
+
       // this.checkLoginStatus();
       // window.location.href = '#';
       document.getElementById('error-message')!.style.display = 'none';
