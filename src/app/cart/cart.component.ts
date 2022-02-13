@@ -6,6 +6,7 @@ import { User } from 'src/app/models/User';
 import { lastValueFrom } from 'rxjs';
 import { BooksToBuy } from 'src/app/models/BooksToBuy';
 import { LoginService } from '../services/login.service';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-cart',
@@ -37,6 +38,7 @@ export class CartComponent implements OnInit {
     this.setUp();
   }
 
+  quantityToBuy:number=2;
 
   setUp() {
     this.items =this.cartService.items

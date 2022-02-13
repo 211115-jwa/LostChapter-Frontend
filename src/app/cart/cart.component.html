@@ -30,8 +30,15 @@
             <!-- <div *ngIf="p.books.saleisActive === true">
               <h3>Sales Price: <span id="price">${{ (p.books.bookPrice - (p.books.bookPrice * p.books.saleDiscountRate)) | number:'1.2-2' }}</span></h3>
             </div> -->
-            <td data-th="Quantity">{{ item.quantityToBuy }}
+            <td data-th="Quantity">
+            <span>
+              {{ item.quantityToBuy }}
+              <button type="button"><i class="fa fa-minus"></i></button>
+              <input type="text" [value]="quantityToBuy">
+              <button type="button"><i class="fa fa-plus"></i></button>
+            </span>  
             </td>
+            
             <td data-th="Total" class="text-center">${{ item.quantityToBuy * item.books.bookPrice }}</td>
             <td class="actions" data-th="">
               <!-- <button class="btn btn-info btn-sm" (click)="refreshPage()" ><i class="fa fa-refresh"></i></button> -->

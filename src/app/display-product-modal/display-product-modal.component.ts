@@ -113,6 +113,8 @@ export class DisplayProductModalComponent implements OnInit {
       item.bookImage
     );
 
+    window.location.href = '/cart';
+
     // localStorage.setItem('cart', JSON.stringify(item));
     // console.log(item);
   }
