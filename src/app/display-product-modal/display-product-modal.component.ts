@@ -21,13 +21,20 @@ import { ReviewComponent } from '../review/review.component';
   styleUrls: ['./display-product-modal.component.css'],
 })
 export class DisplayProductModalComponent implements OnInit {
- log = console.log;
+  log = console.log;
   reviews!: Review[];
-  constructor(private revServ:ReviewService,private cartService: CartService,
-     private router: Router, private loginService: LoginService,
-      private addProductToCartService: SearchProductsService, public dialog: MatDialog,
-       private getGenreService: SearchProductsService, private reviewServ: ReviewService, 
-       public dialogRef: MatDialogRef<DisplayProductModalComponent>, @Inject(MAT_DIALOG_DATA) public data: SearchProducts) { }
+  constructor(
+    private revServ: ReviewService,
+    private cartService: CartService,
+    private router: Router,
+    private loginService: LoginService,
+    // private CartService: CartService,
+    public dialog: MatDialog,
+    private getGenreService: SearchProductsService,
+    private reviewServ: ReviewService,
+    public dialogRef: MatDialogRef<DisplayProductModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: SearchProducts
+  ) {}
 
   selectedProducts!: SearchProducts;
   errorMessage!: string;
@@ -35,43 +42,37 @@ export class DisplayProductModalComponent implements OnInit {
   quantity = 0;
   userId!: number;
   added?: boolean;
-  addedToCart = "Item have been added to Cart";
+  addedToCart = 'Item have been added to Cart';
   bookReviews!: Review[];
-  
 
   role!: String;
 
   addToCart = 'Add to Cart';
 
-   ngOnInit() {
+  ngOnInit() {
     this.checkLoginStatus();
-   this.viewBookReviews(this.data.bookId);
-   // console.log(this.reviews);
+    this.viewBookReviews(this.data.bookId);
+    // console.log(this.reviews);
   }
 
   viewBookReviews(bookId: number) {
     this.revServ.getAllReviewsbyBookId(bookId).subscribe((res) => {
-      this.reviews = <Review[]> res.body;
-     
-    })
-  
+      this.reviews = <Review[]>res.body;
+    });
   }
-
 
   onCloseDisplayProduct() {
     this.dialogRef.close('Confirm');
   }
 
-  
-  addBookReview(bookId:number) {
+  addBookReview(bookId: number) {
     this.log(bookId);
-this.revServ.bookId = bookId;
-  
-this.dialog.open(ReviewComponent);
+    this.revServ.bookId = bookId;
 
+    this.dialog.open(ReviewComponent);
   }
 
-  checkLoginStatus(){
+  checkLoginStatus() {
     this.loginService.checkLoginStatus().subscribe({
       next: (res) => {
         if (res.status === 200) {
@@ -93,25 +94,39 @@ this.dialog.open(ReviewComponent);
   }
 
   onAddToCart(productId: number) {
+    let quantity: any = this.quantity;
     let item = {
-      productId:productId,
-      quantity:this.quantity,
-      name: this.selectedProducts.bookName
-    }
-    localStorage.setItem('cart', JSON.stringify(item));
-  }
-    // this.addProductToCartService
-    //   .addToCart(String(productId), String(this.quantity), String(this.cartId))
-    //   .subscribe({
-    //     next: (res) => {
-    //       if (res.status === 200) {
-    //         let body = <Cart>res.body;
-    //         this.added = true;
-    //       }
-    //     },
-    //     error: (err) => {
-    //       this.errorMessage = err.error;
-    //     },
-    //   });
+      productId: productId,
+      bookName: this.selectedProducts.bookName,
+      quantity: parseInt(quantity),
+      price: this.selectedProducts.bookPrice,
+      author: this.selectedProducts.author,
+      bookImage: this.selectedProducts.bookImage
+    };
 
+    this.cartService.addToCart(
+      item.productId,
+      item.bookName,
+      item.quantity,
+      item.price,
+      item.author,
+      item.bookImage
+    );
+
+    // localStorage.setItem('cart', JSON.stringify(item));
+    // console.log(item);
+  }
+  // this.addProductToCartService
+  //   .addToCart(String(productId), String(this.quantity), String(this.cartId))
+  //   .subscribe({
+  //     next: (res) => {
+  //       if (res.status === 200) {
+  //         let body = <Cart>res.body;
+  //         this.added = true;
+  //       }
+  //     },
+  //     error: (err) => {
+  //       this.errorMessage = err.error;
+  //     },
+  //   });
 }

@@ -14,7 +14,8 @@ import { LoginService } from '../services/login.service';
 })
 export class CartComponent implements OnInit {
   userId!: number;
-  cart!: Cart;
+  cart!: any;
+  items!: any[];
   priceTotal!: Cart[];
   booksToBuy!: BooksToBuy[];
   searchItem = '';
@@ -33,6 +34,12 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.checkLoginStatus();
     this.getCartProduct();
+    this.setUp();
+  }
+
+
+  setUp() {
+    this.items =this.cartService.items
   }
 
   getCartProduct(){

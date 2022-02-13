@@ -11,22 +11,45 @@ import { Products } from 'src/app/models/Products';
 export class CartService {
   constructor(private http: HttpClient) {}
   sub: Subject<Cart> = new Subject();
-  items: Products[] = [];
+  items: any[] = [];
   p!: Products;
 
-  addToCart(pId: string, quantity: string, cartId: string) {
-    let parameter = new HttpParams();
-    parameter = parameter.append('productId', pId);
-    parameter = parameter.append('quantity', quantity);
-    return this.http.post(`http://localhost:8081/carts/${cartId}`, 
-     // `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/carts/${cartId}`,//??
-      {},
-      {
-        params: parameter,
-        withCredentials: true,
-        observe: 'response',
+  addToCart(pId: number ,name : string,  quantity: number, price: number, author: string, image:string) {
+    let item = {
+      bookId:pId,
+      bookName: name,
+      quantityToBuy:quantity,
+      bookPrice: price,
+      author: author,
+      bookImage: image,
+    }
+    let exist=false;
+
+
+    // var cartProducts = [];
+    this.items.map((cartProduct)=>{
+      if(cartProduct.bookId == item.bookId){
+        exist = true;
+        cartProduct.quantityToBuy = quantity;
       }
-    );
+    })
+    if (exist == false){
+      this.items.push(item);
+    }
+    localStorage.setItem('cart', JSON.stringify(this.items));
+
+    // let parameter = new HttpParams();
+    // parameter = parameter.append('productId', pId);
+    // parameter = parameter.append('quantity', quantity);
+    // return this.http.post(`http://localhost:8081/carts/${cartId}`, 
+    //  // `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/carts/${cartId}`,//??
+    //   {},
+    //   {
+    //     params: parameter,
+    //     withCredentials: true,
+    //     observe: 'response',
+    //   }
+    // );
   }
 
   getCartFromCustomerPage(userId: string) {
