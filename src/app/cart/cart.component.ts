@@ -41,6 +41,7 @@ export class CartComponent implements OnInit {
   quantityToBuy:number=2;
 
   setUp() {
+    this.cartService.checkCart();
     this.items =this.cartService.items
   }
 

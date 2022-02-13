@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, windowWhen } from 'rxjs';
 import { Cart } from 'src/app/models/Cart';
 
 import { Products } from 'src/app/models/Products';
@@ -13,6 +13,15 @@ export class CartService {
   sub: Subject<Cart> = new Subject();
   items: any[] = [];
   p!: Products;
+
+  checkCart(){
+
+      if (window.localStorage.getItem("cart")){
+        let cart =window.localStorage.getItem("cart");
+        this.items = JSON.parse(cart!);
+      }
+
+  }
 
   addToCart(pId: number ,name : string,  quantity: number, price: number, author: string, image:string) {
     let item = {
@@ -50,6 +59,8 @@ export class CartService {
     //     observe: 'response',
     //   }
     // );
+   
+
   }
 
   getCartFromCustomerPage(userId: string) {
