@@ -114,6 +114,8 @@ export class DisplayProductModalComponent implements OnInit {
     );
     window.location.href = '/cart';
 
+    window.location.href = '/cart';
+
     // localStorage.setItem('cart', JSON.stringify(item));
     // console.log(item);
   }
