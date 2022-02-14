@@ -71,22 +71,21 @@ export class CartComponent implements OnInit {
   }
 
    onDeleteButtonClick(productId: number) {
-    this.cartService.deleteProductFromCart(String(productId), String(this.userId)).subscribe({
-        next: (res) => {
-          if (res.status === 200) {
-            let body = <Cart>res.body;
-            this.cart = body
-
-          }
-        },
-        error: (err) => {
-        },
-      });
+    this.cartService.deleteProductFromCart(productId);
+    this.setUp();
+    window.location.href = '/cart';
+    
   }
 
-  calculateTotalPrice(booksToBuy: any){
-      return booksToBuy?.reduce((previousValue: number, currentValue: { books: { bookPrice: number; }; quantityToBuy: number; }) =>
-      previousValue + currentValue.books.bookPrice * currentValue.quantityToBuy, 0);
+  calculateTotalPrice(){
+
+    let total:number = 0;
+    this.items.forEach(function(item:any){
+     total += item.quantityToBuy * item.bookPrice;
+    });
+    return total.toFixed(2)!;
+      // return items.reduce((previousValue: number, currentValue: { items: { bookPrice: number; }; quantityToBuy: number; }) =>
+      // previousValue + currentValue.bookPrice * currentValue.quantityToBuy, 0);
 
   }
 

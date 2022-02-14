@@ -72,15 +72,19 @@ export class CartService {
       })
   }
 
-  deleteProductFromCart(bookId: string, userId: string) {
-    return this.http.delete(`http://localhost:8081/users/${userId}/cart`, {
-    //  `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/users/${userId}/cart`, {
+  deleteProductFromCart(bookId: number, ) {
 
-      withCredentials: true,
-      observe: 'response',
-      params: {
-        'bookId': bookId,
-      },
-    });
+    this.items = this.items.filter((product)=> product.bookId !== bookId)
+    localStorage.setItem('cart', JSON.stringify(this.items));
+
+    // return this.http.delete(`http://localhost:8081/users/${userId}/cart`, {
+    // //  `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/users/${userId}/cart`, {
+
+    //   withCredentials: true,
+    //   observe: 'response',
+    //   params: {
+    //     'bookId': bookId,
+    //   },
+    // });
   }
 }
