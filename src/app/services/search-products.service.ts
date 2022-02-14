@@ -59,7 +59,7 @@ export class SearchProductsService {
   }
 
   getBookById(bookId: number){
-    return this.http.get(`${this.host}book/${bookId}`, {
+    return this.http.get(`${this.host}/book/${bookId}`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/books/${bookId}`, {
       observe: 'response'
     })
