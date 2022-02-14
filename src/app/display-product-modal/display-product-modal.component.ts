@@ -95,14 +95,31 @@ export class DisplayProductModalComponent implements OnInit {
 
   onAddToCart(productId: number) {
     let quantity: any = this.quantity;
-    let item = {
-      productId: productId,
-      bookName: this.selectedProducts.bookName,
-      quantity: parseInt(quantity),
-      price: this.selectedProducts.bookPrice,
-      author: this.selectedProducts.author,
-      bookImage: this.selectedProducts.bookImage
-    };
+    var item: any;
+
+    if (this.selectedProducts.saleIsActive){
+       item = {
+        productId: productId,
+        bookName: this.selectedProducts.bookName,
+        quantity: parseInt(quantity),
+        price: this.selectedProducts.bookPrice - (this.selectedProducts.bookPrice* this.selectedProducts.saleDiscountRate),
+        author: this.selectedProducts.author,
+        bookImage: this.selectedProducts.bookImage
+      };
+
+    }else{
+      item = {
+        productId: productId,
+        bookName: this.selectedProducts.bookName,
+        quantity: parseInt(quantity),
+        price: this.selectedProducts.bookPrice,
+        author: this.selectedProducts.author,
+        bookImage: this.selectedProducts.bookImage
+      };
+
+    }
+   
+    console.log(this.selectedProducts)
 
     this.cartService.addToCart(
       item.productId,
@@ -114,7 +131,6 @@ export class DisplayProductModalComponent implements OnInit {
     );
     window.location.href = '/cart';
 
-    window.location.href = '/cart';
 
     // localStorage.setItem('cart', JSON.stringify(item));
     // console.log(item);
