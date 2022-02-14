@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
+  private host = environment.hostURL;
+
   constructor(private http: HttpClient) {
     this.loggedInUser = null;
 
@@ -13,13 +16,11 @@ export class LoginService {
 
   loggedInUser: User| undefined | null;
   regHeaders = { 'Content-type': 'application/json' };
-  jwtHeaders = { 'Content-type': 'application/json' };
-
-
 
   checkLoginStatus() {
     let token = localStorage.getItem('Token');
-    return this.http.get(`http://localhost:8081/users/${token}/auth`,{
+    // return this.http.get(`http://localhost:8081/users/${token}/auth`,{
+      return this.http.get(`${this.host}/users/${token}/auth`,{
       //'http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/loginstatus', {
       observe: 'response',
       withCredentials: true,
@@ -31,8 +32,9 @@ export class LoginService {
       username: username,
       password: password,
     };
-    
-    let resp = await fetch(`http://localhost:8081/users/auth`, {
+
+    // let resp = await fetch(`http://localhost:8081/users/auth`, {
+      let resp = await fetch(`${this.host}/users/auth`, {
       method: 'POST',
       body: JSON.stringify(credentials),
       headers: this.regHeaders,
@@ -52,11 +54,12 @@ export class LoginService {
       document.getElementById('error-message')!.style.display = 'block';
     }
 
- 
+
   }
 
   logout() {
-    return this.http.post(`http://localhost:8081/logout`,
+    // return this.http.post(`http://localhost:8081/logout`,
+    return this.http.post(`${this.host}/logout`,
       //'http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/logout',
       {},
       {
@@ -75,7 +78,8 @@ export class LoginService {
     birthday: string,
     role: string
   ) {
-    return this.http.put(`http://localhost:8081/user`,
+    // return this.http.put(`http://localhost:8081/user`,
+    return this.http.put(`${this.host}/user`,
      // `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/user`,
       {
         username: username,
