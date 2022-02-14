@@ -1,0 +1,141 @@
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .fw-400 {
+    font-weight: 400;
+  }
+  
+  .fw-600 {
+    font-weight: 600;
+  }
+  
+  .fw-700 {
+    font-weight: 700;
+  }
+  
+  .error {
+    color: #ff4242;
+    display: none;
+  }
+
+
+  h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+}
+
+.content{
+        font-family: "Open Sans", sans-serif;
+      
+}
+
+.btn-outline-primary {
+    background-color: #fff;
+    color: #f46036;
+    border: 1px #f78566 solid;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    border-radius: 1.5em;
+  }
+  .btn-outline-primary:hover {
+    background-color: #fff;
+    color: #ff8fd8;
+    border: 1px #ff8fd8 solid;
+  }
+  
+  .btn-primary {
+    font-family: "Open Sans", sans-serif;
+    background-color: #f46036;
+    font-size: 1em;
+    font-weight: 600;
+    border: 1px #f46036 solid;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+ .content {
+    overflow-y: hidden;
+  }
+
+  .btn-primary:active {
+    font-family: "Open Sans", sans-serif;
+    background-color: #f78566;
+    font-size: 1em;
+    font-weight: 600;
+    border: 1px #f78566 solid;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  
+  .btn-primary:focus {
+    font-family: "Open Sans", sans-serif;
+    background-color: #f78566 !important;
+    font-size: 1em;
+    font-weight: 600;
+    border: 1px #f78566 solid !important;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+  
+  .border-btn {
+    border-radius: 2.5em;
+  }
+
+  .btn-primary:hover {
+    background-color: #f78566;
+    border: 1px #f78566 solid;
+  }
+  
+  .background-image {
+    background-size: cover;
+    background-position: center;
+    height: 13em;
+  }
+  
+  
+
+
+
+
+ .content .first-section {
+    margin-top: 5em;
+    margin-bottom: 5em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    animation: fadeIn 3s;
+    animation-fill-mode: forwards;
+  }
+
+  .content .first-section h1 {
+    font-family: "Poppins", sans-serif  !important;
+    font-size: 40px !important;
+    font-stretch: 100% !important;
+  }
+ .content .first-section p {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.4;
+    max-width: 500px;
+  }
+
+
+  @media screen and (min-width: 768px) {
+
+
+  }

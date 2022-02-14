@@ -35,7 +35,7 @@ export class CartService {
     let exist=false;
 
 
-    // var cartProducts = [];
+
     this.items.map((cartProduct)=>{
       if(cartProduct.bookId == item.bookId){
         exist = true;
@@ -46,20 +46,6 @@ export class CartService {
       this.items.push(item);
     }
     localStorage.setItem('cart', JSON.stringify(this.items));
-
-    // let parameter = new HttpParams();
-    // parameter = parameter.append('productId', pId);
-    // parameter = parameter.append('quantity', quantity);
-    // return this.http.post(`http://localhost:8081/carts/${cartId}`, 
-    //  // `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/carts/${cartId}`,//??
-    //   {},
-    //   {
-    //     params: parameter,
-    //     withCredentials: true,
-    //     observe: 'response',
-    //   }
-    // );
-   
 
   }
 

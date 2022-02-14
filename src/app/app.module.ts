@@ -50,6 +50,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReviewComponent } from './review/review.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { ReviewcardComponent } from './reviewcard/reviewcard.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { ReviewcardComponent } from './reviewcard/reviewcard.component';
     WishlistComponent,
     ReviewComponent,
     ReviewcardComponent,
+    LandingPageComponent,
   ],
 
   imports: [

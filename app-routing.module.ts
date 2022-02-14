@@ -10,9 +10,11 @@ import { SearchResultsComponent } from 'src/app/search-results/search-results.co
 import { HomeComponent } from 'src/app/home/home.component';
 import { UpdateBookComponent } from 'src/app/update-book/update-book.component';
 import { WishlistComponent } from 'src/app/wishlist/wishlist.component';
+import { LandingPageComponent } from 'src/app/landing-page/landing-page.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+
+  {path: '', component: LandingPageComponent},
   // Please change this to which ever component you are testing and implementing
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},

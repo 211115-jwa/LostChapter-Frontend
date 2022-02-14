@@ -73,7 +73,7 @@ export class CartComponent implements OnInit {
    onDeleteButtonClick(productId: number) {
     this.cartService.deleteProductFromCart(productId);
     this.setUp();
-    window.location.href = '/cart';
+    // window.location.href = '/cart';
     
   }
 
