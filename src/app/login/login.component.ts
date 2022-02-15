@@ -1,6 +1,9 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { AuthenticationService } from '../services/authentication.service';
 import { LoginService } from '../services/login.service';
 
 
@@ -11,7 +14,10 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginComponent implements OnInit {
   @Output() login: EventEmitter<any> = new EventEmitter();
-  constructor(private router: Router, private loginService: LoginService) {}
+
+  private subscriptions: Subscription[] = [];
+
+  constructor(private router: Router, private loginService: LoginService, private authService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.checkIfLoggedIn();
@@ -25,10 +31,32 @@ export class LoginComponent implements OnInit {
   hide = true;
 
   // perform service layer functionality here
-  onLoggedIn() {
-    this.loginService.login(this.username, this.password).then((res) => {
+  onLogIn() {
+    // this.loginService.login(this.username, this.password).then((res) => {
 
-      this.login.emit();
+    // this.login.emit();
+
+    let credentials = {
+          username: this.username,
+          password: this.password,
+        };
+
+
+    this.loginService.login(credentials).subscribe(
+      (response: HttpResponse<User>) => {
+        if(response.status === 201 || response.status === 200) {
+          const token = response.headers.get('Jwt-Token');
+          console.log('LOGGED IN. TOKEN: ' + token);
+          this.authService.saveToken(token);
+          this.authService.addUserToLocalCache(response.body);
+
+          this.router.navigate(['/home']);
+        }
+
+      }
+    )
+
+
 
     //   if (res.status === 201 || res.status === 200) {
     //     let body = <User> res.body;
@@ -46,7 +74,7 @@ export class LoginComponent implements OnInit {
     //     this.errorMessage = err.error;
     //   });
 
-  })
+  // })
 }
 
 
@@ -69,4 +97,9 @@ export class LoginComponent implements OnInit {
         }
       });
   }
+
+  ngOnDestroy(): void {
+
+  }
+
 }

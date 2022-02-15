@@ -1,17 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
-
+  private host = environment.hostURL;
   constructor(private http: HttpClient) { }
 
   cartCheckout(cardNumber: string, expirationMonth: string, expirationYear: string, securityCode: string, cardholderName: string,
     firstName: string, lastName: string, streetName: string, city: string, state: string, zipCode: string, deliveryDate: string){
-    return this.http.post(`http://localhost:8081/user/checkout`, {
+    return this.http.post(`${this.host}/user/checkout`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/user/checkout`, {
 
       "cardNumber": cardNumber,
@@ -35,7 +36,7 @@ export class CheckoutService {
   }
 
   getCheckoutSummary(transactionId: number){
-    return this.http.get(`http://localhost:8081/order-confirmation/${transactionId}`, {
+    return this.http.get(`${this.host}/order-confirmation/${transactionId}`, {
       //`http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/order-confirmation/${transactionId}`, {
       withCredentials: true,
       observe: 'response'

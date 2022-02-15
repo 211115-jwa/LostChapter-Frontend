@@ -4,6 +4,7 @@ import { Subject, windowWhen } from 'rxjs';
 import { Cart } from 'src/app/models/Cart';
 
 import { Products } from 'src/app/models/Products';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class CartService {
   sub: Subject<Cart> = new Subject();
   items: any[] = [];
   p!: Products;
-
+  private host = environment.hostURL;
   checkCart(){
 
       if (window.localStorage.getItem("cart")){
@@ -23,7 +24,7 @@ export class CartService {
 
   }
 
-  addToCart(pId: number ,name : string,  quantity: number, price: number, author: string, image:string) {
+  addToCart(pId: number ,name : string,  quantity: number, price: number, author: string, image:string, quantityOnHand: number) {
     let item = {
       bookId:pId,
       bookName: name,
@@ -31,6 +32,7 @@ export class CartService {
       bookPrice: price,
       author: author,
       bookImage: image,
+      quantityOnHand:quantityOnHand
     }
     let exist=false;
 
@@ -50,7 +52,7 @@ export class CartService {
   }
 
   getCartFromCustomerPage(userId: string) {
-    return this.http.get<Cart>(`http://localhost:8081/users/${userId}/cart`, {
+    return this.http.get<Cart>(`${this.host}/users/${userId}/cart`, {
      // `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/users/${userId}/cart`, {
         withCredentials: true
       }).subscribe((res)=> {
