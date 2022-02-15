@@ -22,26 +22,35 @@
       <div class="nav-right">
         <div id="nav-tools">
           <a routerLink="/home">Shop</a>
-          <ng-container *ngIf="ableToSignUp">
-            <a routerLink="/signup">Sign up</a>
-          </ng-container>
-          <a routerLink="/wishlist">Wishlist</a>
-          <ng-container *ngIf="ableToLogIn">
-            <a id="loginBtnHeader" routerLink="/login">Log in</a>
-          </ng-container>
-          <ng-container *ngIf="loggedIn">
-            <button id="log-out-btn" routerLink="" (click)="logout()">Log Out</button>
-          </ng-container>
+          <!-- <a routerLink="/wishlist">Wishlist</a> -->
           <!-- Changed routerLink above from routerLink="" to routerLink="/login"  -->
           <a routerLink="/cart">Cart</a>
         </div>
-
+        
+        <!-- <ng-container *ngIf="ableToSignUp">
+          <a routerLink="/signup">Sign up</a>
+        </ng-container>
+        <ng-container *ngIf="ableToLogIn">
+          <a id="loginBtnHeader" routerLink="/login">Log in</a>
+        </ng-container>
+        <ng-container *ngIf="loggedIn">
+          <button id="log-out-btn" routerLink="" (click)="logout()">Log Out</button>
+        </ng-container> -->
       <!-- Name and profile "button" (also the icon for the user) section below -->
       </div>
         <div class="p-3" *ngIf="loggedIn" id="profile-buttons">
           <a routerLink="/userprofile"> <p class="text-white">{{currentUser}}</p></a>
-
-          <!-- replace above with probably something like {{user.username}}}} -->
+          
+            <span id="user">
+              <a class="btn btn-outline-info nav-link"role="button" *ngIf="!loggedIn; else user2" (click)="this.ableToLogIn=!this.ableToLogIn" id="login" routerLink="login" >Show Login </a>
+              <ng-template #user2>
+                {{ loggedIn }}
+                <a class="btn btn-outline-info " (click)="logOut()" id="logout" role="button" style="margin: 2px;" >Log Out </a>
+              </ng-template>
+            </span>
+          </div>
+        </div>
+          <!-- replace above with probably something like {{user.username}} -->
         </div>
         <div class="p-3" *ngIf="notLoggedIn" id="profile-buttons">
           <p class="text-info" routerLink="/login">Sign in now</p>
