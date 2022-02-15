@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
   errorMessage!: string;
 
   ngOnInit(): void {
-    this.checkIfLoggedIn();
+   
   }
 
   checkIfLoggedIn() {

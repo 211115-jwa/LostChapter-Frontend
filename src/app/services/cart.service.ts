@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, windowWhen } from 'rxjs';
 import { Cart } from 'src/app/models/Cart';
 
 import { Products } from 'src/app/models/Products';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,26 +12,47 @@ import { Products } from 'src/app/models/Products';
 export class CartService {
   constructor(private http: HttpClient) {}
   sub: Subject<Cart> = new Subject();
-  items: Products[] = [];
+  items: any[] = [];
   p!: Products;
+  private host = environment.hostURL;
+  checkCart(){
 
-  addToCart(pId: string, quantity: string, cartId: string) {
-    let parameter = new HttpParams();
-    parameter = parameter.append('productId', pId);
-    parameter = parameter.append('quantity', quantity);
-    return this.http.post(`http://localhost:8081/carts/${cartId}`, 
-     // `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/carts/${cartId}`,//??
-      {},
-      {
-        params: parameter,
-        withCredentials: true,
-        observe: 'response',
+      if (window.localStorage.getItem("cart")){
+        let cart =window.localStorage.getItem("cart");
+        this.items = JSON.parse(cart!);
       }
-    );
+
+  }
+
+  addToCart(pId: number ,name : string,  quantity: number, price: number, author: string, image:string, quantityOnHand: number) {
+    let item = {
+      bookId:pId,
+      bookName: name,
+      quantityToBuy:quantity,
+      bookPrice: price,
+      author: author,
+      bookImage: image,
+      quantityOnHand:quantityOnHand
+    }
+    let exist=false;
+
+
+
+    this.items.map((cartProduct)=>{
+      if(cartProduct.bookId == item.bookId){
+        exist = true;
+        cartProduct.quantityToBuy = quantity;
+      }
+    })
+    if (exist == false){
+      this.items.push(item);
+    }
+    localStorage.setItem('cart', JSON.stringify(this.items));
+
   }
 
   getCartFromCustomerPage(userId: string) {
-    return this.http.get<Cart>(`http://localhost:8081/users/${userId}/cart`, {
+    return this.http.get<Cart>(`${this.host}/users/${userId}/cart`, {
      // `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/users/${userId}/cart`, {
         withCredentials: true
       }).subscribe((res)=> {
@@ -38,15 +60,19 @@ export class CartService {
       })
   }
 
-  deleteProductFromCart(bookId: string, userId: string) {
-    return this.http.delete(`http://localhost:8081/users/${userId}/cart`, {
-    //  `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/users/${userId}/cart`, {
+  deleteProductFromCart(bookId: number, ) {
 
-      withCredentials: true,
-      observe: 'response',
-      params: {
-        'bookId': bookId,
-      },
-    });
+    this.items = this.items.filter((product)=> product.bookId !== bookId)
+    localStorage.setItem('cart', JSON.stringify(this.items));
+
+    // return this.http.delete(`http://localhost:8081/users/${userId}/cart`, {
+    // //  `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/users/${userId}/cart`, {
+
+    //   withCredentials: true,
+    //   observe: 'response',
+    //   params: {
+    //     'bookId': bookId,
+    //   },
+    // });
   }
 }

@@ -4,7 +4,7 @@
   color: var(--foreground-quaternary);
   box-shadow: var(--background-tertiary-shadow);
   width: 100%;
-  height: 70vh;
+  
 }
 
 .titleRev{
@@ -24,13 +24,15 @@ header {
 
 #product-info {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 95%;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
 .item-image-parent {
   order: 1;
-  width: 50%;
+
   display: flex;
 }
 
@@ -45,12 +47,15 @@ header {
   width: 10%;
   overflow-y: auto;
   margin-top: 50px;
+  display: none;
+
 }
 
 .item-image-main {
   order: 2;
-  width: 50%;
-  height: 50%;
+    width: 100%;
+    height: auto;
+
 }
 h2 {
   color: #e77600 ;
@@ -109,5 +114,16 @@ h2 {
   line-height: 1.3rem;
 }
 
+.item-info-parent{
+  order: 2;
+  width: 100%;
+  margin: 22px;
+  display: flex;
+  justify-content: center;
+}
 
-
+.main-info{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

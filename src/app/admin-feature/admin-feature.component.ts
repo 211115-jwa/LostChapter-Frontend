@@ -111,10 +111,8 @@ export class AdminFeatureComponent implements OnInit {
         this.currentUser.password,
         this.currentUser.firstName,
         this.currentUser.lastName,
-        this.currentUser.age,
         this.currentUser.email,
         this.currentUser.birthday,
-        this.currentUser.address,
         this.currentUser.role
       )
       .subscribe((res) => {

@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from 'app-routing.module';
@@ -50,6 +50,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ReviewComponent } from './review/review.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { ReviewcardComponent } from './reviewcard/reviewcard.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationInterceptor } from './interceptor/authentication.interceptor';
+import { AuthenticationGuard } from './guard/authentication.guard';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -74,6 +79,7 @@ import { ReviewcardComponent } from './reviewcard/reviewcard.component';
     WishlistComponent,
     ReviewComponent,
     ReviewcardComponent,
+    LandingPageComponent,
   ],
 
   imports: [
@@ -116,7 +122,8 @@ import { ReviewcardComponent } from './reviewcard/reviewcard.component';
       }
     })
   ],
-  providers: [],
+  providers: [ AuthenticationGuard, AuthenticationService, JwtHelperService,
+              { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -7,6 +7,7 @@
         <mat-dialog-content>
           <div style="display: flex; align-items: right; justify-content: right;">
             <br>
+
             <button style="background-color: rgb(160, 160, 231); color: rgb(0, 0, 0);" mat-raised-button
               (click)="addBookReview(selectedProducts.bookId)"> Add Review </button> &nbsp;&nbsp;&nbsp;
             <button style="background-color: blue; color: burlywood;" mat-raised-button
@@ -77,6 +78,7 @@
               selectedProducts.saleDiscountRate)) | number:'1.2-2' }}</span></h3>
         </div>
 
+<<<<<<< HEAD
         <label for="quantity">Qty:</label>
         <select name="qty" id="qty" [(ngModel)]="quantity">
           <option selected>1</option>
@@ -90,6 +92,9 @@
           <option>9</option>
           <option>10</option>
         </select>
+=======
+
+>>>>>>> af0107b2422567242419aaf17c816bb9143e6747
           <label for="quantity">Qty:</label>
           <select name="qty" id="qty" [(ngModel)]="quantity">
             <option selected>0</option>
@@ -101,6 +106,7 @@
             <option *ngIf="selectedProducts.quantityOnHand! >=6">6</option>
             <option *ngIf="selectedProducts.quantityOnHand! >=7">7</option>
             <option *ngIf="selectedProducts.quantityOnHand! >=8">8</option>
+<<<<<<< HEAD
             <!-- <option>2</option>
             <option>3</option>
             <option>4</option>
@@ -111,6 +117,13 @@
             <option>9</option>
             <option>10</option> -->
           </select>
+=======
+            <option *ngIf="selectedProducts.quantityOnHand! >=9">9</option>
+            <option *ngIf="selectedProducts.quantityOnHand! >=10">10</option>
+          </select>
+          <button id="add" *ngIf="quantity>0 " style="background-color: #F46036;  margin: 1em ;color: black;" mat-raised-button (click)="  onAddToCart(selectedProducts.bookId)" >Add To Cart</button>
+
+>>>>>>> af0107b2422567242419aaf17c816bb9143e6747
 
           <h2 *ngIf="selectedProducts.quantityOnHand! == 0">This book is out of stock.</h2>
         <hr>
@@ -129,25 +142,34 @@
             id="success-message">{{addedToCart}}</div>
         </strong> -->
 
-      </div>
-    </div>
-  </section>
+  
+  
   <!-- <br> -->
 
+<<<<<<< HEAD
  
+=======
+>>>>>>> af0107b2422567242419aaf17c816bb9143e6747
     <mat-dialog-content>
       <div style="display: flex; align-items: right; justify-content: right;">
         <br>
-        <button style="background-color: blue;  margin: 1em ; color: burlywood;" mat-raised-button (click)="onCloseDisplayProduct()" >Cancel</button>
-        <br>
-        <button *ngIf="quantity>0 " style="background-color: #F46036; margin: 1em ; color: black;" mat-raised-button (click)="  onAddToCart(selectedProducts.bookId)" >Add To Cart</button>
+        
+       
+       
      </div>
     </mat-dialog-content>
+<<<<<<< HEAD
 
 <br>
 <div>
  <h2 class="titleRev">{{ selectedProducts.bookName }} Reviews</h2>
  <app-reviewcard id="mSliderDiv" *ngFor="let eachReview of reviews"   [review2]="eachReview"></app-reviewcard></div>
+=======
+>>>>>>> af0107b2422567242419aaf17c816bb9143e6747
 
 
+<div class  = "review-container">
+ <h2 class="titleRev">{{ selectedProducts.bookName }} Reviews</h2>
+ <app-reviewcard class="mSliderDiv mb-5" *ngFor="let eachReview of reviews"   [review2]="eachReview">
+ </app-reviewcard>
 </div>
