@@ -24,13 +24,21 @@ const routes: Routes = [
     component: CheckoutComponent,
     canActivate: [AuthenticationGuard]
   },
-  {path: 'checkout-summary/:transactionId', component: CheckoutSummaryComponent},
-  {path: 'userprofile', component: UserProfileComponent},
+  {
+    path: 'checkout-summary/:transactionId',
+    component: CheckoutSummaryComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'userprofile',
+    component: UserProfileComponent,
+    canActivate: [AuthenticationGuard]
+  },
   {path: 'cart', component: CartComponent},
   {path: 'search-results/:searchKeyword', component: SearchResultsComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'admin/book/:bookId', component: UpdateBookComponent},
-  {path: 'wishlist', component:WishlistComponent}
+  {path: 'admin/book/:bookId', component: UpdateBookComponent}
+  // {path: 'wishlist', component:WishlistComponent}
 ];
 
 @NgModule({
