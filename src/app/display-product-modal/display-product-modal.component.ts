@@ -50,7 +50,7 @@ export class DisplayProductModalComponent implements OnInit {
   addToCart = 'Add to Cart';
 
   ngOnInit() {
-    this.checkLoginStatus();
+    // this.checkLoginStatus();
     this.viewBookReviews(this.data.bookId);
     // console.log(this.reviews);
   }

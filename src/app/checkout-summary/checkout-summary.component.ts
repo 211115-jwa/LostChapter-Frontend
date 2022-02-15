@@ -24,7 +24,7 @@ export class CheckoutSummaryComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
   showCheckoutSummary(){
     this.checkoutService.getCheckoutSummary(this.transactionId).subscribe((res) => {

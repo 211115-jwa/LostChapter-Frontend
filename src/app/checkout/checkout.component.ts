@@ -39,7 +39,7 @@ export class CheckoutComponent implements OnInit {
   shippingAddress!: ShippingAddress;
 
   ngOnInit(): void {
-    this.checkIfLoggedIn();
+    // this.checkIfLoggedIn();
   }
 
   checkIfLoggedIn() {

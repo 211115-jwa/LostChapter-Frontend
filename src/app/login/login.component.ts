@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private loginService: LoginService, private authService: AuthenticationService) {}
 
   ngOnInit(): void {
-    this.checkIfLoggedIn();
+    // this.checkIfLoggedIn();
   }
 
   username!: string;
@@ -41,19 +41,20 @@ export class LoginComponent implements OnInit {
           password: this.password,
         };
 
-
+    this.subscriptions.push(
     this.loginService.login(credentials).subscribe(
-      (response: HttpResponse<User>) => {
-        if(response.status === 201 || response.status === 200) {
-          const token = response.headers.get('Jwt-Token');
-          console.log('LOGGED IN. TOKEN: ' + token);
-          this.authService.saveToken(token);
-          this.authService.addUserToLocalCache(response.body);
+        (response: HttpResponse<User>) => {
+          if(response.status === 201 || response.status === 200) {
+            const token = response.headers.get('Jwt-Token');
+            console.log('LOGGED IN. TOKEN: ' + token);
+            this.authService.saveToken(token);
+            this.authService.addUserToLocalCache(response.body);
 
-          this.router.navigate(['/home']);
+            this.router.navigate(['/home']);
+          }
+
         }
-
-      }
+      )
     )
 
 
@@ -99,7 +100,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-
+    this.subscriptions.forEach( sub => {
+      sub.unsubscribe;
+    });
   }
 
 }

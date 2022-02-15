@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.checkLoginStatus();
+    // this.checkLoginStatus();
     this.getCartProduct();
     this.setUp();
   }
@@ -63,7 +63,7 @@ export class CartComponent implements OnInit {
     }
   }
 
-  
+
   checkLoginStatus(){
     this.loginService.checkLoginStatus().subscribe({
       next: (res) => {
@@ -87,7 +87,7 @@ export class CartComponent implements OnInit {
     this.cartService.deleteProductFromCart(productId);
     this.setUp();
     // window.location.href = '/cart';
-    
+
   }
 
   calculateTotalPrice(){
