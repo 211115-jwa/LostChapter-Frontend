@@ -15,6 +15,8 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./indexnavbar.component.css']
 })
 export class IndexnavbarComponent implements OnInit {
+  constructor(private loginService:LoginService, private http: HttpClient, private searchProductService: SearchProductsService, private router: Router, private authenticationService: AuthenticationService) { }
+
   // boolean checks to make the navbar dynamic based on login status
   loggedIn:boolean= false;
   notLoggedIn:boolean= true;
@@ -28,53 +30,55 @@ export class IndexnavbarComponent implements OnInit {
   roleIsCustomer:boolean= false;
   roleIsAdmin:boolean = false;
 
- 
+
   private isUserLoggedIn(): boolean {
     if(this.authenticationService.isLoggedIn()) {
       let user = JSON.parse(localStorage.getItem('user'));
       this.loggedInUser = user !== null ? user : null;
-      return true;
+      this.currentUser = this.loggedInUser.username;
+      this.loggedIn = true;
+      return this.loggedIn;
     } else {
-      this.router.navigate(['/login']);
+      // this.router.navigate(['/login']);
       return false;
     }
   }
 
   logout(){
-    if (this.role  === 'Customer'){
-      this.loginService.logout().subscribe((res) => {
-        if (res.status === 200 || res.status === 201){
-          // toggling booleans
-          this.loggedIn = !this.loggedIn;
-          this.ableToSignUp = !this.ableToSignUp;
-          this.ableToLogIn = !this.ableToLogIn;
-          this.notLoggedIn = !this.notLoggedIn;
-        }
-      });
 
-    }
-    if (this.role  === 'Admin'){
-      this.loginService.logout().subscribe((res) => {
-        if (res.status === 200 || res.status === 201){
-          // toggling booleans
-          this.loggedIn = !this.loggedIn;
-          this.ableToSignUp = !this.ableToSignUp;
-          this.ableToLogIn = !this.ableToLogIn;
-          this.notLoggedIn = !this.notLoggedIn;
-        }
-      });
+    this.authenticationService.logOut();
+    this.loggedIn = false;
+    // if (this.role  === 'Customer'){
+    //   this.loginService.logout().subscribe((res) => {
+    //     if (res.status === 200 || res.status === 201){
+    //       // toggling booleans
+    //       this.loggedIn = !this.loggedIn;
+    //       this.ableToSignUp = !this.ableToSignUp;
+    //       this.ableToLogIn = !this.ableToLogIn;
+    //       this.notLoggedIn = !this.notLoggedIn;
+    //     }
+    //   });
 
-    }
+    // }
+    // if (this.role  === 'Admin'){
+    //   this.loginService.logout().subscribe((res) => {
+    //     if (res.status === 200 || res.status === 201){
+    //       // toggling booleans
+    //       this.loggedIn = !this.loggedIn;
+    //       this.ableToSignUp = !this.ableToSignUp;
+    //       this.ableToLogIn = !this.ableToLogIn;
+    //       this.notLoggedIn = !this.notLoggedIn;
+    //     }
+    //   });
+
+    // }
   }
-  constructor(private loginService:LoginService, private http: HttpClient, private searchProductService: SearchProductsService, private router: Router, private authenticationService: AuthenticationService) { }
-
   searchProduct!: SearchProducts;
 
   isSearchBlank!: true;
 
   ngOnInit(): void {
     this.isUserLoggedIn();
-
     // get current signed in user, so it will be used to toggle loggedInTrue and show the user's username
   }
 

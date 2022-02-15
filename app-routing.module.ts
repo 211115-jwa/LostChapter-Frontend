@@ -26,8 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'checkout-summary/:transactionId',
-    component: CheckoutSummaryComponent,
-    canActivate: [AuthenticationGuard]
+    component: CheckoutSummaryComponent
   },
   {
     path: 'userprofile',
