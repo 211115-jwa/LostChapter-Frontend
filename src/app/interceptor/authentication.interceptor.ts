@@ -37,7 +37,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     console.log('CLONING');
     console.log(request.headers.get('Authorization'));
 
-
     return httpHandler.handle(request);
   }
 }

@@ -11,6 +11,7 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { UpdateBookComponent } from 'src/app/update-book/update-book.component';
 import { WishlistComponent } from 'src/app/wishlist/wishlist.component';
 import { LandingPageComponent } from 'src/app/landing-page/landing-page.component';
+import { AuthenticationGuard } from 'src/app/guard/authentication.guard';
 
 const routes: Routes = [
 
@@ -18,7 +19,11 @@ const routes: Routes = [
   // Please change this to which ever component you are testing and implementing
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'checkout', component: CheckoutComponent},
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthenticationGuard]
+  },
   {path: 'checkout-summary/:transactionId', component: CheckoutSummaryComponent},
   {path: 'userprofile', component: UserProfileComponent},
   {path: 'cart', component: CartComponent},

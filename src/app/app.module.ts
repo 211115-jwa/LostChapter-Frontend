@@ -54,6 +54,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthenticationInterceptor } from './interceptor/authentication.interceptor';
 import { AuthenticationGuard } from './guard/authentication.guard';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -121,7 +122,7 @@ import { AuthenticationGuard } from './guard/authentication.guard';
       }
     })
   ],
-  providers: [AuthenticationService, AuthenticationGuard,
+  providers: [ AuthenticationGuard, AuthenticationService, JwtHelperService,
               { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
