@@ -139,7 +139,7 @@ export class AdminFeatureComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.checkIfLoggedIn();
+    // this.checkIfLoggedIn();
     this.getLoggedUser();
     this.sub = this.route.params.subscribe(params => {
       this.bookId = params[`bookId`];

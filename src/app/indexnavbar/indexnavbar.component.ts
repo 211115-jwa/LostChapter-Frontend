@@ -15,13 +15,11 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./indexnavbar.component.css']
 })
 export class IndexnavbarComponent implements OnInit {
-  constructor(private loginService:LoginService, private http: HttpClient, private searchProductService: SearchProductsService, private router: Router, private authenticationService: AuthenticationService) { }
-
   // boolean checks to make the navbar dynamic based on login status
   loggedIn:boolean= false;
-  notLoggedIn:boolean= true;
-  ableToSignUp:boolean= true;
-  ableToLogIn:boolean= true;
+  // notLoggedIn:boolean= true;
+  // ableToSignUp:boolean= true;
+  // ableToLogIn:boolean= true;
   d:Date = new Date("1993-03-01");
   role!:String;
   currentUser!: String;
@@ -30,24 +28,26 @@ export class IndexnavbarComponent implements OnInit {
   roleIsCustomer:boolean= false;
   roleIsAdmin:boolean = false;
 
+  constructor(private loginService:LoginService, private http: HttpClient, private searchProductService: SearchProductsService, private router: Router, private authenticationService: AuthenticationService) { }
 
-  private isUserLoggedIn(): boolean {
+  ngOnInit(): void {
     if(this.authenticationService.isLoggedIn()) {
       let user = JSON.parse(localStorage.getItem('user'));
       this.loggedInUser = user !== null ? user : null;
       this.currentUser = this.loggedInUser.username;
       this.loggedIn = true;
-      return this.loggedIn;
-    } else {
-      // this.router.navigate(['/login']);
-      return false;
+      this.role = this.loggedInUser.role;
+
     }
+    // get current signed in user, so it will be used to toggle loggedInTrue and show the user's username
   }
 
   logout(){
-
     this.authenticationService.logOut();
     this.loggedIn = false;
+    this.loggedInUser = null;
+    this.currentUser = '';
+    this.role = '';
     // if (this.role  === 'Customer'){
     //   this.loginService.logout().subscribe((res) => {
     //     if (res.status === 200 || res.status === 201){
@@ -76,11 +76,6 @@ export class IndexnavbarComponent implements OnInit {
   searchProduct!: SearchProducts;
 
   isSearchBlank!: true;
-
-  ngOnInit(): void {
-    this.isUserLoggedIn();
-    // get current signed in user, so it will be used to toggle loggedInTrue and show the user's username
-  }
 
   searchItem = '';
 
