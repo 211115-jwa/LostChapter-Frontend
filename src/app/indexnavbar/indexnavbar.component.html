@@ -10,11 +10,11 @@
         <div id="nav-search">
           <form id="nav-search-bar-form">
             <div class="nav-fill">
-              <input type="text" placeholder="Search Book Title" [(ngModel)]="searchItem" name="searchItem">
+              <input id="search" type="text" placeholder="Search Book Title" [(ngModel)]="searchItem" name="searchItem">
             </div>
             <div class="nav-right">
               <!-- <a routerLink="/search-results" routerLinkActive="/search-results"></a> -->
-              <a routerLink="/search-results/{{searchItem}}" ><button type="submit" style="color: grey; background: aliceblue; height: 45px;" (click)="displaySearchResults()">Search</button></a>
+              <a id="searchBtn" routerLink="/search-results/{{searchItem}}" ><button type="submit" style="color: grey; background: aliceblue; height: 45px;" (click)="displaySearchResults()">Search</button></a>
             </div>
           </form>
         </div>
@@ -27,7 +27,7 @@
           </ng-container>
           <a routerLink="/wishlist">Wishlist</a>
           <ng-container *ngIf="ableToLogIn">
-            <a routerLink="/login">Log in</a>
+            <a id="loginBtnHeader" routerLink="/login">Log in</a>
           </ng-container>
           <ng-container *ngIf="loggedIn">
             <button id="log-out-btn" routerLink="" (click)="logout()">Log Out</button>
