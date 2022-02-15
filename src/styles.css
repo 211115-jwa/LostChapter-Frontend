@@ -55,3 +55,8 @@ body {
   --background-tertiary-shadow: 0 1px 3px 0 rgba(92, 125, 153, 0.5);
 }
 
+
+.mat-dialog-container{
+  height: 70vh !important;
+
+}

@@ -34,29 +34,29 @@ export class UserProfileComponent implements OnInit {
   }
 
   onUpdateClick() {
-    this.loginService
-      .updateUser(
-        this.currentUser.username,
-        this.currentUser.password,
-        this.currentUser.firstName,
-        this.currentUser.lastName,
-        this.currentUser.age,
-        this.currentUser.email,
-        this.currentUser.birthday,
-        this.currentUser.address,
-        this.currentUser.role
-      )
-      .subscribe((res) => {
-        if (res.status === 200) {
-          this.successMessage = 'Your update is successful';
-          let body = <User>res.body;
-          this.currentUser = body;
-        }
-      },
-      (err) => {
-        this.errorMessage = '';
-        this.errorMessage = err.error;
+    // this.loginService
+    //   .updateUser(
+    //     this.currentUser.username,
+    //     this.currentUser.password,
+    //     this.currentUser.firstName,
+    //     this.currentUser.lastName,
+    //     this.currentUser.age,
+    //     this.currentUser.email,
+    //     this.currentUser.birthday,
+    //     this.currentUser.address,
+    //     this.currentUser.role
+    //   )
+    //   .subscribe((res) => {
+    //     if (res.status === 200) {
+    //       this.successMessage = 'Your update is successful';
+    //       let body = <User>res.body;
+    //       this.currentUser = body;
+    //     }
+    //   },
+    //   (err) => {
+    //     this.errorMessage = '';
+    //     this.errorMessage = err.error;
 
-      });
+    //   });
   }
 }
