@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from 'app-routing.module';
@@ -51,6 +51,9 @@ import { ReviewComponent } from './review/review.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { ReviewcardComponent } from './reviewcard/reviewcard.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationInterceptor } from './interceptor/authentication.interceptor';
+import { AuthenticationGuard } from './guard/authentication.guard';
 
 
 @NgModule({
@@ -118,7 +121,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
       }
     })
   ],
-  providers: [],
+  providers: [AuthenticationService, AuthenticationGuard,
+              { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
