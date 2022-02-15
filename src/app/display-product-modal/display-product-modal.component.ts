@@ -97,29 +97,32 @@ export class DisplayProductModalComponent implements OnInit {
     let quantity: any = this.quantity;
     var item: any;
 
-    if (this.selectedProducts.saleIsActive){
-       item = {
+    if (this.selectedProducts.saleIsActive) {
+      item = {
         productId: productId,
         bookName: this.selectedProducts.bookName,
         quantity: parseInt(quantity),
-        price: this.selectedProducts.bookPrice - (this.selectedProducts.bookPrice* this.selectedProducts.saleDiscountRate),
+        price:
+          this.selectedProducts.bookPrice -
+          this.selectedProducts.bookPrice *
+            this.selectedProducts.saleDiscountRate,
         author: this.selectedProducts.author,
-        bookImage: this.selectedProducts.bookImage
+        bookImage: this.selectedProducts.bookImage,
+        quantityOnHand: this.selectedProducts.quantityOnHand,
       };
-
-    }else{
+    } else {
       item = {
         productId: productId,
         bookName: this.selectedProducts.bookName,
         quantity: parseInt(quantity),
         price: this.selectedProducts.bookPrice,
         author: this.selectedProducts.author,
-        bookImage: this.selectedProducts.bookImage
+        bookImage: this.selectedProducts.bookImage,
+        quantityOnHand: this.selectedProducts.quantityOnHand,
       };
-
     }
-   
-    console.log(this.selectedProducts)
+
+    console.log(this.selectedProducts);
 
     this.cartService.addToCart(
       item.productId,
@@ -127,10 +130,10 @@ export class DisplayProductModalComponent implements OnInit {
       item.quantity,
       item.price,
       item.author,
-      item.bookImage
+      item.bookImage,
+      item.quantityOnHand
     );
     window.location.href = '/cart';
-
 
     // localStorage.setItem('cart', JSON.stringify(item));
     // console.log(item);

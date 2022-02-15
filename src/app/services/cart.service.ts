@@ -24,7 +24,7 @@ export class CartService {
 
   }
 
-  addToCart(pId: number ,name : string,  quantity: number, price: number, author: string, image:string) {
+  addToCart(pId: number ,name : string,  quantity: number, price: number, author: string, image:string, quantityOnHand: number) {
     let item = {
       bookId:pId,
       bookName: name,
@@ -32,6 +32,7 @@ export class CartService {
       bookPrice: price,
       author: author,
       bookImage: image,
+      quantityOnHand:quantityOnHand
     }
     let exist=false;
 
