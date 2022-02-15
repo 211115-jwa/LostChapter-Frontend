@@ -50,7 +50,20 @@ export class CartComponent implements OnInit {
       this.cart = res;
     });
   }
+  addQuantity(pId: number ,name : string,  quantity: number, price: number, author: string, image:string, quantityOnHand: number) {
+    if (quantity < quantityOnHand){
+      let newQuantity = quantity + 1;
+      this.cartService.addToCart(pId, name, newQuantity, price, author, image, quantityOnHand)
+    }
+  }
+  subQuantity(pId: number ,name : string,  quantity: number, price: number, author: string, image:string, quantityOnHand: number){
+    if (quantity >1){
+      let newQuantity = quantity - 1;
+      this.cartService.addToCart(pId, name, newQuantity, price, author, image, quantityOnHand)
+    }
+  }
 
+  
   checkLoginStatus(){
     this.loginService.checkLoginStatus().subscribe({
       next: (res) => {
