@@ -23,42 +23,16 @@ export class IndexnavbarComponent implements OnInit {
   d:Date = new Date("1993-03-01");
   role!:String;
   currentUser!: String;
-  loggedInUser: User| undefined | null;
+  loggedInUser: User;
   // boolean check to properly redirect user to their profile page
   roleIsCustomer:boolean= false;
   roleIsAdmin:boolean = false;
 
-  // checkIfLoggedIn() {
-  //   this.loginService.checkLoginStatus().subscribe((res) => {
-  //     if (res.status === 200 || res.status === 201){ // depending on the status
-  //       let body = <User> res.body;
-  //       this.role = body.role;
-  //       this.ableToSignUp = !this.ableToSignUp;
-  //       this.currentUser = body.username;
-  //       this.ableToLogIn = !this.ableToLogIn;
-  //       this.loggedIn = !this.loggedIn;
-  //       this.notLoggedIn = !this.notLoggedIn;
-
-  //       // the two if statements below control the *ngIf for the profile button
-  //       if(body.role === 'Customer'){
-  //         this.roleIsCustomer = true;
-  //         this.roleIsAdmin = false;
-  //       }
-  //       if(body.role === 'Admin'){
-  //         this.roleIsAdmin = true;
-  //         this.roleIsCustomer = false;
-  //       }
-  //     }
-  //   },
-  //   (err) => {
-  //     console.log(err);
-  //   });
-  // }
-
+ 
   private isUserLoggedIn(): boolean {
     if(this.authenticationService.isLoggedIn()) {
-      localStorage.setItem('User',JSON.stringify(user));
-      this.loggedInUser=JSON.stringify(localStorage.getItem('Token'));
+      let user = JSON.parse(localStorage.getItem('user'));
+      this.loggedInUser = user !== null ? user : null;
       return true;
     } else {
       this.router.navigate(['/login']);
