@@ -31,7 +31,7 @@ export class FeaturedProductsComponent implements OnInit {
   arrayLength = 10;
 
   ngOnInit(): void {
-    this.checkLoginStatus();
+    // this.checkLoginStatus();
     this.getFeaturedBooks();
   }
 

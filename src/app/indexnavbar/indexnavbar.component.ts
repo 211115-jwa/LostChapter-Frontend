@@ -7,6 +7,7 @@ import { SearchProducts } from 'src/app/models/SearchProduct';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { SearchProductsService } from '../services/search-products.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-indexnavbar',
@@ -16,81 +17,65 @@ import { SearchProductsService } from '../services/search-products.service';
 export class IndexnavbarComponent implements OnInit {
   // boolean checks to make the navbar dynamic based on login status
   loggedIn:boolean= false;
-  notLoggedIn:boolean= true;
-  ableToSignUp:boolean= true;
-  ableToLogIn:boolean= true;
+  // notLoggedIn:boolean= true;
+  // ableToSignUp:boolean= true;
+  // ableToLogIn:boolean= true;
   d:Date = new Date("1993-03-01");
   role!:String;
   currentUser!: String;
-
+  loggedInUser: User;
   // boolean check to properly redirect user to their profile page
   roleIsCustomer:boolean= false;
   roleIsAdmin:boolean = false;
 
-  checkIfLoggedIn() {
-    this.loginService.checkLoginStatus().subscribe((res) => {
-      if (res.status === 200 || res.status === 201){ // depending on the status
-        let body = <User> res.body;
-        this.role = body.role;
-        this.ableToSignUp = !this.ableToSignUp;
-        this.currentUser = body.username;
-        this.ableToLogIn = !this.ableToLogIn;
-        this.loggedIn = !this.loggedIn;
-        this.notLoggedIn = !this.notLoggedIn;
+  constructor(private loginService:LoginService, private http: HttpClient, private searchProductService: SearchProductsService, private router: Router, private authenticationService: AuthenticationService) { }
 
-        // the two if statements below control the *ngIf for the profile button
-        if(body.role === 'Customer'){
-          this.roleIsCustomer = true;
-          this.roleIsAdmin = false;
-        }
-        if(body.role === 'Admin'){
-          this.roleIsAdmin = true;
-          this.roleIsCustomer = false;
-        }
-      }
-    },
-    (err) => {
-      console.log(err);
-    });
+  ngOnInit(): void {
+    if(this.authenticationService.isLoggedIn()) {
+      let user = JSON.parse(localStorage.getItem('user'));
+      this.loggedInUser = user !== null ? user : null;
+      this.currentUser = this.loggedInUser.username;
+      this.loggedIn = true;
+      this.role = this.loggedInUser.role;
+
+    }
+    // get current signed in user, so it will be used to toggle loggedInTrue and show the user's username
   }
 
   logout(){
-    if (this.role  === 'Customer'){
-      this.loginService.logout().subscribe((res) => {
-        if (res.status === 200 || res.status === 201){
-          // toggling booleans
-          this.loggedIn = !this.loggedIn;
-          this.ableToSignUp = !this.ableToSignUp;
-          this.ableToLogIn = !this.ableToLogIn;
-          this.notLoggedIn = !this.notLoggedIn;
-        }
-      });
+    this.authenticationService.logOut();
+    this.loggedIn = false;
+    this.loggedInUser = null;
+    this.currentUser = '';
+    this.role = '';
+    // if (this.role  === 'Customer'){
+    //   this.loginService.logout().subscribe((res) => {
+    //     if (res.status === 200 || res.status === 201){
+    //       // toggling booleans
+    //       this.loggedIn = !this.loggedIn;
+    //       this.ableToSignUp = !this.ableToSignUp;
+    //       this.ableToLogIn = !this.ableToLogIn;
+    //       this.notLoggedIn = !this.notLoggedIn;
+    //     }
+    //   });
 
-    }
-    if (this.role  === 'Admin'){
-      this.loginService.logout().subscribe((res) => {
-        if (res.status === 200 || res.status === 201){
-          // toggling booleans
-          this.loggedIn = !this.loggedIn;
-          this.ableToSignUp = !this.ableToSignUp;
-          this.ableToLogIn = !this.ableToLogIn;
-          this.notLoggedIn = !this.notLoggedIn;
-        }
-      });
+    // }
+    // if (this.role  === 'Admin'){
+    //   this.loginService.logout().subscribe((res) => {
+    //     if (res.status === 200 || res.status === 201){
+    //       // toggling booleans
+    //       this.loggedIn = !this.loggedIn;
+    //       this.ableToSignUp = !this.ableToSignUp;
+    //       this.ableToLogIn = !this.ableToLogIn;
+    //       this.notLoggedIn = !this.notLoggedIn;
+    //     }
+    //   });
 
-    }
+    // }
   }
-  constructor(private loginService:LoginService, private http: HttpClient, private searchProductService: SearchProductsService, private router: Router) { }
-
   searchProduct!: SearchProducts;
 
   isSearchBlank!: true;
-
-  ngOnInit(): void {
-    this.checkIfLoggedIn();
-
-    // get current signed in user, so it will be used to toggle loggedInTrue and show the user's username
-  }
 
   searchItem = '';
 
@@ -110,3 +95,7 @@ export class IndexnavbarComponent implements OnInit {
 
   }
 }
+function user(user: any): string {
+  throw new Error('Function not implemented.');
+}
+
