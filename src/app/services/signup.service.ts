@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+//import { environment } from './src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
-  private host = environment.hostURL;
+  private host = 'http://ec2-44-201-249-115.compute-1.amazonaws.com:8080/';
 
   constructor(private http: HttpClient) { }
 

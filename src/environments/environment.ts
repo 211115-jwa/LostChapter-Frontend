@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostURL: 'http://localhost:8081'
+  hostURL: 'http://ec2-44-201-249-115.compute-1.amazonaws.com:8081/'
 };
 
 /*
