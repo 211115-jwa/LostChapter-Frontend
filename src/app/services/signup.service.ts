@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SignupService {
-  private host = 'http://ec2-44-201-249-115.compute-1.amazonaws.com:8080/';
+  host: 'http://ec2-44-201-249-115.compute-1.amazonaws.com:8081/';
 
   constructor(private http: HttpClient) { }
 

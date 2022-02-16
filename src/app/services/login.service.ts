@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  private host = environment.hostURL;
+  host: 'http://ec2-44-201-249-115.compute-1.amazonaws.com:8081/';
 
   constructor(private http: HttpClient, private authentication: AuthenticationService) {
     this.loggedInUser = null;

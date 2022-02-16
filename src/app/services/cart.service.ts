@@ -14,7 +14,7 @@ export class CartService {
   sub: Subject<Cart> = new Subject();
   items: any[] = [];
   p!: Products;
-  private host = environment.hostURL;
+  host: 'http://ec2-44-201-249-115.compute-1.amazonaws.com:8081/';
   checkCart(){
 
       if (window.localStorage.getItem("cart")){

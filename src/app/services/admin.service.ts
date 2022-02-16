@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AdminService {
-  private host = environment.hostURL;
+  host: 'http://ec2-44-201-249-115.compute-1.amazonaws.com:8081/';
   constructor(private http: HttpClient) { }
 
   updateBooks(bookId: Number, bookName: string, synopsis: string, author: string, genre: number, quantity: number, year: number, edition: string, publisher: string, saleIsActive: boolean, saleDiscountRate: number, bookPrice: number, bookImage: string, isbn: string){
