@@ -19,9 +19,8 @@ export class AdminFeatureComponent implements OnInit {
   password!: string;
   firstName!: string;
   lastName!: string;
-  age!: number;
   email!: string;
-  birthday!: string;
+  birthday!: Date;
   address!: string;
   role!: string;
 
@@ -107,6 +106,7 @@ export class AdminFeatureComponent implements OnInit {
   onUpdateClick() {
     this.loginService
       .updateUser(
+        this.currentUser.userId,
         this.currentUser.username,
         this.currentUser.password,
         this.currentUser.firstName,

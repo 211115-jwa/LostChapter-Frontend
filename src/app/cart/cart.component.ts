@@ -70,7 +70,7 @@ export class CartComponent implements OnInit {
         if (res.status === 200) {
           let body = <User>res.body;
           if (body.role === 'Customer') {
-            this.userId = body.id;
+            this.userId = body.userId;
             this.cartService.getCartFromCustomerPage(String(this.userId));
           }
         }

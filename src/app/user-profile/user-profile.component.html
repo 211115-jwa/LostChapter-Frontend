@@ -17,12 +17,12 @@
               />
             </label>
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS353z701u_xboQT-5iQe6TPhrzKyKMSsFqSw&usqp=CAU"
+              src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8b3BlbiUyMGJvb2t8ZW58MHx8MHx8&w=1000&q=80"
             />
           </section>
-          <h1>{{ currentUser.lastName }}</h1>
+          <h1>{{ loggedInUser.username }}</h1>
           <!--full Arsene Wengername-->
-          <h3>{{ currentUser.role }}</h3>
+          <h3>{{ loggedInUser.role }}</h3>
           <!--role should go here-->
         </td>
         <td>
@@ -34,7 +34,7 @@
                 name="fullname"
                 id="fullname"
                 required
-                [(ngModel)]="currentUser.firstName"
+                [(ngModel)]="loggedInUser.firstName"
               />
             </li>
             <li>
@@ -43,7 +43,7 @@
                 type="text"
                 name="fullname"
                 id="fullname"
-                [(ngModel)]="currentUser.lastName"
+                [(ngModel)]="loggedInUser.lastName"
               />
             </li>
             <li>
@@ -52,7 +52,7 @@
                 type="email"
                 name="email"
                 id="email"
-                [(ngModel)]="currentUser.email"
+                [(ngModel)]="loggedInUser.email"
                 required
               />
             </li>
@@ -62,19 +62,13 @@
                 type="text"
                 name="role"
                 id="role"
-                [(ngModel)]="currentUser.role"
+                [(ngModel)]="loggedInUser.role"
                 required
               />
             </li>
             <li>
               <b>Age</b> &nbsp;&nbsp;
-              <input
-                type="number"
-                name="age"
-                id="age"
-                [(ngModel)]="currentUser.age"
-                required
-              />
+              <input type="text" placeholder={{loggedInUser.birthday|age}}> 
             </li>
             <li>
               <b>Username</b> &nbsp;&nbsp;
@@ -82,11 +76,11 @@
                 name="username"
                 type="text"
                 id="username"
-                [(ngModel)]="currentUser.username"
+                [(ngModel)]="loggedInUser.username"
                 required
               />
             </li>
-            <li>
+            <!-- <li>
               <b>Address</b> &nbsp;&nbsp;
               <input
                 name="address"
@@ -95,7 +89,7 @@
                 [(ngModel)]="currentUser.address"
                 required
               />
-            </li>
+            </li> -->
           </ul>
           <button
             mat-raised-button

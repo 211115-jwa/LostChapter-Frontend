@@ -80,7 +80,7 @@ export class DisplayProductModalComponent implements OnInit {
           this.role = body.role;
           console.log(this.role);
           if (body.role === 'Customer') {
-            this.cartId = body.id;
+            this.cartId = body.userId;
             this.cartService.getCartFromCustomerPage(String(this.cartId));
           }
         }

@@ -41,7 +41,7 @@ export class FeaturedProductsComponent implements OnInit {
         if (res.status === 200) {
           let body = <User>res.body;
           if (body.role === 'Customer') {
-            this.cartId = body.id;
+            this.cartId = body.userId;
             this.cartService.getCartFromCustomerPage(String(this.cartId));
           }
         }

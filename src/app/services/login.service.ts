@@ -83,18 +83,19 @@ export class LoginService {
     );
   }
   updateUser(
+    id:number,
     username: string,
     password: string,
     firstName: string,
     lastName: string,
     email: string,
-    birthday: string,
+    birthday: Date,
     role: string
   ) {
     // return this.http.put(`http://localhost:8081/user`,
-    return this.http.put(`${this.host}/user`,
-     // `http://ec2-54-84-57-117.compute-1.amazonaws.com:8081/user`,
+    return this.http.put(`${this.host}/users/${id}`,
       {
+        id:id,
         username: username,
         password: password,
         firstName: firstName,
