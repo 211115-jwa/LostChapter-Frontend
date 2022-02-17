@@ -55,17 +55,15 @@ export class SignupComponent implements OnInit {
   }
 
   onSignupClick() {
-    // console.log( this.birthday);
     this.signupService.signup(this.username, this.password, this.firstName, 
       this.lastName, this.age, this.email, this.birthday, this.address).subscribe((res) => {
       if (res.status === 201 || res.status === 200){
-        if (res.body){
-          this.successMessage = '';
-          this.router.navigate(['/login']);
-
-           // this.successMessage = res.body;
-            this.ngOnInit();
-        }
+        this.router.navigate(['/login']);
+        // if (res.body){
+        //   this.successMessage = '';
+        //    // this.successMessage = res.body;
+        //     this.ngOnInit();
+        // }
       }
     }, (err) => {
       this.errorMessage = '';
