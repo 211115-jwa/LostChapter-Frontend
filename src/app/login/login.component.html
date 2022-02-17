@@ -23,7 +23,7 @@
       </mat-card-content>
 
       <!-- *ngIf="errorMessage" -->
-      <div  id="error-login" class="text-danger">
+      <div  *ngIf="errorMessage" id="error-login" class="text-danger">
         <!-- {{ errorMessage }} -->
         Invalid Credentials
       </div>
