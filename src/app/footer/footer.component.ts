@@ -26,7 +26,7 @@ export class FooterComponent implements OnInit {
     this.setLightbulb();
     this.roleIsCustomer= false;
     this.roleIsAdmin= false;
-    this.checkIfLoggedIn();
+    // this.checkIfLoggedIn();
   }
 
   setLightbulb() {

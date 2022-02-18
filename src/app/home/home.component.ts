@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getByGenre(this.selectedIndex,0);
-    console.log("on in: " + this.selectedIndex);
   }
 
   displayProducts: SearchProducts[] = [];
@@ -54,14 +53,14 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  onDisplayProduct(bookId: number){
+  onDisplayProduct(book: SearchProducts){
     let modalRef = this.dialog.open(DisplayProductModalComponent, {
       width: '1400px',
       height: '700px',
-      data: 'Book Information'
+      data: book
     });
 
-      this.getGenreService.getBookById(bookId).subscribe((res) => {
+      this.getGenreService.getBookById(book.bookId).subscribe((res) => {
           let responseObj = <SearchProducts>res.body;
           this.selectedProducts = responseObj
 

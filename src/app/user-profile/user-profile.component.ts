@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { LoginService } from '../services/login.service';
-
-
+import { AuthenticationService } from '../services/authentication.service';
+import { AgePipe } from '../age.pipe';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
-  constructor(private router: Router, private loginService: LoginService) {}
-
+  constructor(private router: Router, private loginService: LoginService, private authenticationService: AuthenticationService) {}
+  loggedInUser: User;
   // succssmessage
   successMessage!: string;
 
@@ -21,13 +21,12 @@ export class UserProfileComponent implements OnInit {
   currentUser!: User;
 
   getLoggedUser() {
-    this.loginService.checkLoginStatus().subscribe((res) => {
-      if (res.status === 200) {
-        let body = <User>res.body;
-        this.currentUser = body;
-      } else {
-      }
-    });
+    if(this.authenticationService.isLoggedIn()) {
+      let user = JSON.parse(localStorage.getItem('user'));
+      this.loggedInUser = user !== null ? user : null;
+     console.log(this.loggedInUser);
+
+    }
   }
   ngOnInit(): void {
     this.getLoggedUser();
@@ -36,27 +35,25 @@ export class UserProfileComponent implements OnInit {
   onUpdateClick() {
     this.loginService
       .updateUser(
-        this.currentUser.username,
-        this.currentUser.password,
-        this.currentUser.firstName,
-        this.currentUser.lastName,
-        this.currentUser.age,
-        this.currentUser.email,
-        this.currentUser.birthday,
-        this.currentUser.address,
-        this.currentUser.role
+        this.loggedInUser.userId,
+        this.loggedInUser.username,
+        this.loggedInUser.password,
+        this.loggedInUser.firstName,
+        this.loggedInUser.lastName,
+        this.loggedInUser.email,
+        this.loggedInUser.birthday,
+        this.loggedInUser.role
       )
       .subscribe((res) => {
         if (res.status === 200) {
           this.successMessage = 'Your update is successful';
           let body = <User>res.body;
-          this.currentUser = body;
+          this.loggedInUser = body;
         }
       },
       (err) => {
         this.errorMessage = '';
         this.errorMessage = err.error;
-
       });
   }
 }

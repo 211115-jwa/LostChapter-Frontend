@@ -12,7 +12,8 @@ import { SignupService } from '../services/signup.service';
 })
 
 export class SignupComponent implements OnInit {
-  constructor(private router: Router, private loginService: LoginService, private signupService: SignupService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private loginService: LoginService, 
+    private signupService: SignupService, private route: ActivatedRoute) { }
 
   username!: string;
   password!: string;
@@ -34,7 +35,7 @@ export class SignupComponent implements OnInit {
   errorMessage!: string;
 
   ngOnInit(): void {
-    this.checkIfLoggedIn();
+   
   }
 
   checkIfLoggedIn() {
@@ -54,13 +55,15 @@ export class SignupComponent implements OnInit {
   }
 
   onSignupClick() {
-    this.signupService.signup(this.username, this.password, this.firstName, this.lastName, this.age, this.email, this.birthday, this.address).subscribe((res) => {
+    this.signupService.signup(this.username, this.password, this.firstName, 
+      this.lastName, this.age, this.email, this.birthday, this.address).subscribe((res) => {
       if (res.status === 201 || res.status === 200){
-        if (res.body){
-          this.successMessage = '';
-            this.successMessage = res.body;
-            this.ngOnInit();
-        }
+        this.router.navigate(['/login']);
+        // if (res.body){
+        //   this.successMessage = '';
+        //    // this.successMessage = res.body;
+        //     this.ngOnInit();
+        // }
       }
     }, (err) => {
       this.errorMessage = '';

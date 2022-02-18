@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from 'app-routing.module';
@@ -45,6 +45,17 @@ import { FeaturedProductsComponent } from './featured-products/featured-products
 import { NgxSlickJsModule } from 'ngx-slickjs';
 import { AgePipe } from './age.pipe';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import { ReviewComponent } from './review/review.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { ReviewcardComponent } from './reviewcard/reviewcard.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationInterceptor } from './interceptor/authentication.interceptor';
+import { AuthenticationGuard } from './guard/authentication.guard';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @NgModule({
   declarations: [
@@ -65,7 +76,10 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     UpdateBookComponent,
     FeaturedProductsComponent,
     AgePipe,
-    WishlistComponent
+    WishlistComponent,
+    ReviewComponent,
+    ReviewcardComponent,
+    LandingPageComponent,
   ],
 
   imports: [
@@ -92,11 +106,13 @@ import { WishlistComponent } from './wishlist/wishlist.component';
     BrowserModule,
     HttpClientModule,
     MatToolbarModule,
+    MatDatepickerModule,
     MatTooltipModule,
     MatMenuModule,
     NgxPaginationModule,
     FontAwesomeModule,
     MatTabsModule,
+    MatSliderModule,
     NgxSlickJsModule.forRoot({
       links: {
         jquery: "https://code.jquery.com/jquery-3.4.0.min.js",
@@ -106,7 +122,8 @@ import { WishlistComponent } from './wishlist/wishlist.component';
       }
     })
   ],
-  providers: [],
+  providers: [ AuthenticationGuard, AuthenticationService, JwtHelperService,
+              { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

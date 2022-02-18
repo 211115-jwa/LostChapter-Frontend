@@ -17,7 +17,7 @@ import { SearchProductsService } from '../services/search-products.service';
 export class SearchResultsComponent implements OnInit {
 
   selected = 'option2';
-  errorMessage!: string;
+  errorMessage: string="Book does not exist, try again";
 
   showResults: SearchProducts[] = [];
   selectedProducts!: SearchProducts;

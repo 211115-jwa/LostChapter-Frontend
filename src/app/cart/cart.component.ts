@@ -6,6 +6,7 @@ import { User } from 'src/app/models/User';
 import { lastValueFrom } from 'rxjs';
 import { BooksToBuy } from 'src/app/models/BooksToBuy';
 import { LoginService } from '../services/login.service';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +15,8 @@ import { LoginService } from '../services/login.service';
 })
 export class CartComponent implements OnInit {
   userId!: number;
-  cart!: Cart;
+  cart!: any;
+  items!: any[];
   priceTotal!: Cart[];
   booksToBuy!: BooksToBuy[];
   searchItem = '';
@@ -31,8 +33,16 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.checkLoginStatus();
+    // this.checkLoginStatus();
     this.getCartProduct();
+    this.setUp();
+  }
+
+  quantityToBuy:number=2;
+
+  setUp() {
+    this.cartService.checkCart();
+    this.items =this.cartService.items
   }
 
   getCartProduct(){
@@ -40,6 +50,19 @@ export class CartComponent implements OnInit {
       this.cart = res;
     });
   }
+  addQuantity(pId: number ,name : string,  quantity: number, price: number, author: string, image:string, quantityOnHand: number) {
+    if (quantity < quantityOnHand){
+      let newQuantity = quantity + 1;
+      this.cartService.addToCart(pId, name, newQuantity, price, author, image, quantityOnHand)
+    }
+  }
+  subQuantity(pId: number ,name : string,  quantity: number, price: number, author: string, image:string, quantityOnHand: number){
+    if (quantity >1){
+      let newQuantity = quantity - 1;
+      this.cartService.addToCart(pId, name, newQuantity, price, author, image, quantityOnHand)
+    }
+  }
+
 
   checkLoginStatus(){
     this.loginService.checkLoginStatus().subscribe({
@@ -47,7 +70,7 @@ export class CartComponent implements OnInit {
         if (res.status === 200) {
           let body = <User>res.body;
           if (body.role === 'Customer') {
-            this.userId = body.id;
+            this.userId = body.userId;
             this.cartService.getCartFromCustomerPage(String(this.userId));
           }
         }
@@ -61,22 +84,21 @@ export class CartComponent implements OnInit {
   }
 
    onDeleteButtonClick(productId: number) {
-    this.cartService.deleteProductFromCart(String(productId), String(this.userId)).subscribe({
-        next: (res) => {
-          if (res.status === 200) {
-            let body = <Cart>res.body;
-            this.cart = body
+    this.cartService.deleteProductFromCart(productId);
+    this.setUp();
+    // window.location.href = '/cart';
 
-          }
-        },
-        error: (err) => {
-        },
-      });
   }
 
-  calculateTotalPrice(booksToBuy: any){
-      return booksToBuy?.reduce((previousValue: number, currentValue: { books: { bookPrice: number; }; quantityToBuy: number; }) =>
-      previousValue + currentValue.books.bookPrice * currentValue.quantityToBuy, 0);
+  calculateTotalPrice(){
+
+    let total:number = 0;
+    this.items.forEach(function(item:any){
+     total += item.quantityToBuy * item.bookPrice;
+    });
+    return total.toFixed(2)!;
+      // return items.reduce((previousValue: number, currentValue: { items: { bookPrice: number; }; quantityToBuy: number; }) =>
+      // previousValue + currentValue.bookPrice * currentValue.quantityToBuy, 0);
 
   }
 

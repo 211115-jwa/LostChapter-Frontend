@@ -31,7 +31,7 @@ export class FeaturedProductsComponent implements OnInit {
   arrayLength = 10;
 
   ngOnInit(): void {
-    this.checkLoginStatus();
+    // this.checkLoginStatus();
     this.getFeaturedBooks();
   }
 
@@ -41,7 +41,7 @@ export class FeaturedProductsComponent implements OnInit {
         if (res.status === 200) {
           let body = <User>res.body;
           if (body.role === 'Customer') {
-            this.cartId = body.id;
+            this.cartId = body.userId;
             this.cartService.getCartFromCustomerPage(String(this.cartId));
           }
         }
@@ -62,14 +62,14 @@ export class FeaturedProductsComponent implements OnInit {
   }
 
 
-  onDisplayProduct(bookId: number){
+  onDisplayProduct(book: SearchProducts){
     let modalRef = this.dialog.open(DisplayProductModalComponent, {
-      width: '800px',
-      height: '600px',
-      data: 'Book Information'
+      //width: '780px',
+      //height: '600px',
+      data: book
     });
 
-      this.getGenreService.getBookById(bookId).subscribe((res) => {
+      this.getGenreService.getBookById(book.bookId).subscribe((res) => {
           let responseObj = <SearchProducts>res.body;
           this.selectedProducts = responseObj
 

@@ -10,20 +10,34 @@ import { SearchResultsComponent } from 'src/app/search-results/search-results.co
 import { HomeComponent } from 'src/app/home/home.component';
 import { UpdateBookComponent } from 'src/app/update-book/update-book.component';
 import { WishlistComponent } from 'src/app/wishlist/wishlist.component';
+import { LandingPageComponent } from 'src/app/landing-page/landing-page.component';
+import { AuthenticationGuard } from 'src/app/guard/authentication.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+
+  {path: '', component: LandingPageComponent},
   // Please change this to which ever component you are testing and implementing
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'checkout-summary/:transactionId', component: CheckoutSummaryComponent},
-  {path: 'userprofile', component: UserProfileComponent},
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'checkout-summary/:transactionId',
+    component: CheckoutSummaryComponent
+  },
+  {
+    path: 'userprofile',
+    component: UserProfileComponent,
+    canActivate: [AuthenticationGuard]
+  },
   {path: 'cart', component: CartComponent},
   {path: 'search-results/:searchKeyword', component: SearchResultsComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'admin/book/:bookId', component: UpdateBookComponent},
-  {path: 'wishlist', component:WishlistComponent}
+  {path: 'admin/book/:bookId', component: UpdateBookComponent}
+  // {path: 'wishlist', component:WishlistComponent}
 ];
 
 @NgModule({
